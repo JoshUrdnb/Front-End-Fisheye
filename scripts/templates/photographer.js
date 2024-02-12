@@ -7,7 +7,8 @@ function photographerTemplate(data) {
         const article = document.createElement( 'article' );
 
         const profilePic = document.createElement( 'img' );
-        profilePic.setAttribute("src", picture)
+        profilePic.src = picture
+        profilePic.alt = name
 
         const identification = document.createElement( 'p' );
         identification.textContent = id;
