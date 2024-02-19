@@ -3,7 +3,7 @@ export function photographerTemplate(data) {
 
     const picture = `assets/photographers/${portrait}`;
 
-    // Fonction pour créer les paramètres d'URL avec URLSearchParams
+    // Fonction pour créer les paramètres d'url avec URLSearchParams :
     function createURLWithSearchParams() {
         const params = new URLSearchParams();
         params.set('id', id);
@@ -13,10 +13,10 @@ export function photographerTemplate(data) {
     function getUserCardDOM() {
         const article = document.createElement('article');
 
-        // Créer un lien autour de l'article avec les paramètres d'URL
+        // Créer un lien autour de l'article avec les paramètres d'URL :
         const link = document.createElement('a');
 
-        // Appeler la fonction pour obtenir les paramètres d'URL
+        // Appeler la fonction pour obtenir les paramètres d'URL :
         const paramsString = createURLWithSearchParams();
         link.href = `photographer.html?${paramsString}`;
 
@@ -58,3 +58,38 @@ export function photographerTemplate(data) {
 
     return { picture, id, name, city, country, tagline, price, getUserCardDOM };
 }
+
+function photographerDetails() {
+    const photographer = photographerTemplate()
+    console.log("Photographer object:", photographer)
+
+    const { name, city, country, tagline, profilePic } = photographer
+    console.log("Name:", name)
+    console.log("City:", city)
+    console.log("Country:", country)
+    console.log("Tagline:", tagline)
+    console.log("Profile Pic:", profilePic)
+
+    document.getElementById('details').innerHTML +=  `
+      <section class="photograph-details">
+        <div class="photograph-detail">
+          <h2 class="photograph-name">${name}</h2>
+          <p class="photograph-location">${city}, ${country}</p>
+          <p class="photograph-tagline">${tagline}</p>
+        </div>
+        <button class="button" id="contactBtn" aria-label="ouverture de la modal de contact">Contactez-moi</button>
+        <img class="photograph-img" src="assets/photographers/${profilePic}" alt="Photo de ${name}">
+      </section>
+    `;
+
+    // Ajout du lien
+    const userCardDOM = photographer.getUserCardDOM()
+    console.log("User Card DOM:", userCardDOM)
+
+    document.getElementById('main').appendChild(userCardDOM)
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("ok ça fonctionne")
+    photographerDetails()
+});
