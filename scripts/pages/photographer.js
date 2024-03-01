@@ -12,15 +12,15 @@ async function getPhotographer(id) {
             return photographer.id === id;
         });
 
-        // Filtrer les médias en fonction de l'ID du photographe
+        // les médias en fonction de l'ID du photographe
         photographer.media = data.media.filter((media) => {
             return media.photographerId === id;
         });
 
-        // Afficher les données dans la console
+        // les données dans la console
         console.log(data);
 
-        // Retourne le tableau des photographes une fois récupéré
+        // tableau des photographes une fois récupéré
         return photographer;
     } catch (error) {
         console.error('Error fetching photographers data', error);
@@ -32,7 +32,7 @@ function photographerDetails(photographer) {
 
     const { name, city, country, tagline, profilePic } = photographer;
 
-    // Générer la vue des détails du photographe
+    // détails du photographe
     const photographerDetailsHTML = `
         <section class="photograph-details">
             <div class="photograph-detail">
@@ -45,7 +45,7 @@ function photographerDetails(photographer) {
         </section>
     `;
 
-    // Générer la vue des médias du photographe
+    // médias du photographe
     const mediaDetailsHTML = photographer.media.map((media) => {
         return `
             <div class="media-item">
@@ -59,7 +59,7 @@ function photographerDetails(photographer) {
         `;
     }).join('');
 
-    // Afficher les détails dans la vue HTML
+    // détails dans la vue HTML
     document.getElementById('details').innerHTML = photographerDetailsHTML + `<div class="media-container">${mediaDetailsHTML}</div>`;
 }
 
