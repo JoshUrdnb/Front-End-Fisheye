@@ -1,14 +1,19 @@
 export function photographerTemplate(data) {
-    const { portrait, id, name, city, country, tagline, price } = data;
+    const { portrait, id, name, city, country, tagline, price, media } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
-    // Fonction pour créer les paramètres d'url avec URLSearchParams :
+    // Fonction pour créer les paramètres d'URL avec URLSearchParams :
     function createURLWithSearchParams() {
         const params = new URLSearchParams();
         params.set('id', id);
         return params.toString();
     }
+
+    // function filterHighLikesMedia() {
+    //     const thresholdLikes = 50;
+    //     return media.filter(mediaItem => mediaItem.likes > thresholdLikes);
+    // }
 
     function getUserCardDOM() {
         const article = document.createElement('article');
@@ -42,6 +47,14 @@ export function photographerTemplate(data) {
         const pricing = document.createElement('p');
         pricing.textContent = price;
 
+        // const highLikesMedia = filterHighLikesMedia();
+
+        // highLikesMedia.forEach(mediaItem => {
+        //     const mediaElement = document.createElement('div');
+        //     mediaElement.textContent = `Media: ${mediaItem.title}, Likes: ${mediaItem.likes}`;
+        //     article.appendChild(mediaElement);
+        // });
+
         article.appendChild(profilePic);
         article.appendChild(identification);
         article.appendChild(naming);
@@ -56,7 +69,5 @@ export function photographerTemplate(data) {
         return (link);
     }
 
-    //faire new function ici
-
-    return { picture, id, name, city, country, tagline, price, getUserCardDOM };
+    return { picture, id, name, city, country, tagline, price, media, getUserCardDOM };
 }
