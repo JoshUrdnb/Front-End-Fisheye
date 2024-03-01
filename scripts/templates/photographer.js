@@ -56,40 +56,7 @@ export function photographerTemplate(data) {
         return (link);
     }
 
+    //faire new function ici
+
     return { picture, id, name, city, country, tagline, price, getUserCardDOM };
 }
-
-function photographerDetails() {
-    const photographer = photographerTemplate()
-    console.log("Photographer object:", photographer)
-
-    const { name, city, country, tagline, profilePic } = photographer
-    console.log("Name:", name)
-    console.log("City:", city)
-    console.log("Country:", country)
-    console.log("Tagline:", tagline)
-    console.log("Profile Pic:", profilePic)
-
-    document.getElementById('details').innerHTML +=  `
-      <section class="photograph-details">
-        <div class="photograph-detail">
-          <h2 class="photograph-name">${name}</h2>
-          <p class="photograph-location">${city}, ${country}</p>
-          <p class="photograph-tagline">${tagline}</p>
-        </div>
-        <button class="button" id="contactBtn" aria-label="ouverture de la modal de contact">Contactez-moi</button>
-        <img class="photograph-img" src="assets/photographers/${profilePic}" alt="Photo de ${name}">
-      </section>
-    `;
-
-    // Ajout du lien
-    const userCardDOM = photographer.getUserCardDOM()
-    console.log("User Card DOM:", userCardDOM)
-
-    document.getElementById('main').appendChild(userCardDOM)
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("ok ça fonctionne")
-    photographerDetails()
-});
