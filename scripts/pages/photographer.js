@@ -30,7 +30,9 @@ async function getPhotographer(id) {
 function photographerDetails(photographer) {
     console.log("Photographer object:", photographer)
 
-    const { name, city, country, tagline, profilePic } = photographer;
+    const { id, name, city, country, tagline, portrait } = photographer;
+
+    console.log(photographer)
 
     // détails du photographe
     const photographerDetailsHTML = `
@@ -41,7 +43,7 @@ function photographerDetails(photographer) {
                 <p class="photograph-tagline">${tagline}</p>
             </div>
             <button class="button" id="contactBtn" aria-label="ouverture de la modal de contact">Contactez-moi</button>
-            <img class="photograph-img" src="assets/photographers/${profilePic}" alt="Photo de ${name}">
+            <img class="photograph-img" src="assets/photographers/${portrait}" alt="Photo de ${name}">
         </section>
     `;
 
@@ -49,7 +51,7 @@ function photographerDetails(photographer) {
     const mediaDetailsHTML = photographer.media.map((media) => {
         return `
             <div class="media-item">
-                <img src="assets/media/${media.image || media.video}" alt="${media.title}">
+                <img src="assets/media/${id}/${media.image || media.video}" alt="${media.title}">
                 <p>Title: ${media.title}</p>
                 <p>Type: ${media.video ? 'Video' : 'Image'}</p>
                 <p>Likes: ${media.likes}</p>
@@ -71,6 +73,5 @@ async function init() {
     const photographer = await getPhotographer(id);
     photographerDetails(photographer)
 }
-console.log("salut")
 
 init();
