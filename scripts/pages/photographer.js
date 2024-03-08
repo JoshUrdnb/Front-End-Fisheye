@@ -50,6 +50,7 @@ function photographerDetails(photographer) {
     contactButton.className = 'contact_button';
     contactButton.id = 'contactBtn';
     contactButton.setAttribute('aria-label', 'ouverture de la modal de contact');
+    contactButton.onclick = () => displayModal()
     contactButton.textContent = 'Contactez-moi';
 
     const imgElement = document.createElement('img');
@@ -121,12 +122,12 @@ function photographerDetails(photographer) {
 }
 
 function displayModal() {
-    const modal = document.getElementById('contact_button');
+    const modal = document.getElementById('contact_modal');
     modal.style.display = 'block';
 }
 
 function closeModal() {
-    const modal = document.getElementById('contact_button');
+    const modal = document.getElementById('contact_modal');
     modal.style.display = 'none';
 }
 
@@ -136,6 +137,9 @@ async function init() {
     console.log(id);
     const photographer = await getPhotographer(id);
     photographerDetails(photographer);
+
+    const modalImg = document.getElementById('modal_img')
+    modalImg.addEventListener('click', closeModal)
 }
 
 init();
