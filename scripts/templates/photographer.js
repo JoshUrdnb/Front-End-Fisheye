@@ -45,14 +45,6 @@ export function photographerTemplate(data) {
         const location = document.createElement('p');
         location.textContent = `${city}, ${country}`;
         articleWrapper.appendChild(location);
-        
-        // const cities = document.createElement('p');
-        // cities.textContent = city;
-        // articleWrapper.appendChild(cities);
-    
-        // const countries = document.createElement('p');
-        // countries.textContent = country;
-        // articleWrapper.appendChild(countries);
     
         const description = document.createElement('p');
         description.textContent = tagline;
@@ -61,10 +53,6 @@ export function photographerTemplate(data) {
         const pricing = document.createElement('p');
         pricing.textContent = `${formatToCurrency(price, 'EUR', 'fr-FR')}`;
         articleWrapper.appendChild(pricing);
-    
-        // const pricing = document.createElement('p');
-        // pricing.textContent = `${price}€/jours`;
-        // articleWrapper.appendChild(pricing);
     
         // Ajouter les éléments à la div
         article.appendChild(profilePic);
