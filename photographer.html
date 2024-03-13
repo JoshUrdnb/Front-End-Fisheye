@@ -1,38 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <div id="details"></div>
-        <!-- <button class="contact_button" onclick="displayModal()">Contactez-moi</button> -->
-      </div>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header>
+    <img src="assets/images/logo.png" class="logo" />
+  </header>
+  <main id="main">
+    <div class="photograph-header">
+      <div id="details"></div>
+      <!-- <button class="contact_button" onclick="displayModal()">Contactez-moi</button> -->
+    </div>
+  </main>
+
+  <div id="contact_modal">
+
+    <div class="modal_disposition">
+
+      <div class="modal">
+        <header>
           <h2>Contactez-moi</h2>
           <img id="modal_img" src="assets/icons/close.svg" />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
+
+        <form>
+          <div class="formData">
+            <label>Prénom</label><br>
+            <input class="text-control" type="text" id="first" name="first" /><br>
+            <p id="firstNameError" class="colorError"></p>
+          </div>
+
+          <div class="formData">
+            <label>Nom</label><br>
+            <input class="text-control" type="text" id="last" name="last" /><br>
+            <p id="lastNameError" class="colorError"></p>
+          </div>
+
+          <div class="formData">
+            <label>E-mail</label><br>
+            <input class="text-control" type="email" id="email" name="email" /><br>
+            <p id="emailError" class="colorError"></p>
+          </div>
+
+          <div class="formData">
+            <label>Votre message</label><br>
+            <textarea id="newField" name="newField" placeholder="Ecrivez ici..."></textarea><br>
+            <p id="newFieldError" class="colorError"></p>
+          </div>
+
           <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script type="module" src="scripts/pages/photographer.js"></script>
-    <script src="scripts/utils/contactForm.js"></script>
-  </body>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="scripts/pages/photographer.js"></script>
+  <script src="scripts/utils/contactForm.js"></script>
+</body>
+
 </html>
