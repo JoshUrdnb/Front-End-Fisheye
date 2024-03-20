@@ -1,3 +1,5 @@
+import {displayModal, closeModal} from "../utils/contactForm.js"
+
 async function getPhotographer(id) {
     try {
         const response = await fetch("../../data/photographers.json");
@@ -50,7 +52,7 @@ function photographerDetails(photographer) {
     contactButton.className = 'contact_button';
     contactButton.id = 'contactBtn';
     contactButton.setAttribute('aria-label', 'ouverture de la modal de contact');
-    contactButton.onclick = () => displayModal()
+    contactButton.onclick = () => displayModal(name)
     contactButton.textContent = 'Contactez-moi';
 
     const imgElement = document.createElement('img');
@@ -114,16 +116,6 @@ function photographerDetails(photographer) {
     detailsElement.innerHTML = '';
     detailsElement.appendChild(photographerSection);
     detailsElement.appendChild(mediaContainerDiv);
-}
-
-function displayModal() {
-    const modal = document.getElementById('contact_modal');
-    modal.style.display = 'block';
-}
-
-function closeModal() {
-    const modal = document.getElementById('contact_modal');
-    modal.style.display = 'none';
 }
 
 async function init() {

@@ -25,11 +25,11 @@
 
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
+            <h2>Contactez-moi<div id="contactFormName"></div></h2>
           <img id="modal_img" src="assets/icons/close.svg" />
         </header>
 
-        <form>
+        <form id="contact_button">
           <div class="formData">
             <label>Prénom</label><br>
             <input class="text-control" type="text" id="first" name="first" /><br>
@@ -54,7 +54,7 @@
             <p id="newFieldError" class="colorError"></p>
           </div>
 
-          <button class="contact_button">Envoyer</button>
+          <button type="submit">Envoyer</button>
         </form>
 
       </div>
@@ -62,7 +62,6 @@
   </div>
 
   <script type="module" src="scripts/pages/photographer.js"></script>
-  <script src="scripts/utils/contactForm.js"></script>
 </body>
 
 </html>
