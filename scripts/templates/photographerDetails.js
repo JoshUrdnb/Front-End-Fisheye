@@ -11,8 +11,8 @@ export default class PhotographerDetails {
         this.media = photographer.media
     }
 
-    async render(photographer) {
-        const { id, name, city, country, tagline, portrait } = this
+    async render() { // render param... vide ?
+        const { id, name, city, country, tagline, portrait, media} = this // plus besoin de photographer, instance de this en lieu est place pour la methode render, prend en compte la class
 
     const photographerSection = document.createElement('section')
     photographerSection.className = 'photograph-details'
@@ -55,11 +55,11 @@ export default class PhotographerDetails {
     const mediaContainerDiv = document.createElement('div')
     mediaContainerDiv.className = 'media-container'
 
-    photographer.media.forEach((media) => {
+    media.forEach((media) => { // this. au lieu de photographer
         const mediaItemDiv = document.createElement('div')
         mediaItemDiv.className = 'media-item'
     
-        if (media.image) {
+        if (media.image) { // methode sort
             // Si c'est pour une image
             const mediaImg = document.createElement('img')
             mediaImg.src = `assets/media/${id}/${media.image}`

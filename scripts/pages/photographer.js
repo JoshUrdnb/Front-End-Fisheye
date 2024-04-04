@@ -31,7 +31,7 @@ async function init() {
         console.log(id)
         const photographer = await getPhotographer(id)
         const photographerDetails = new PhotographerDetails(photographer) // je crée mon instance de PhotographerDetails
-        photographerDetails.render(photographer) // j'appel mon instance (avec la methode render)
+        photographerDetails.render() // j'appel mon instance (avec la methode render)
 //      photographerDetails(photographer); // ancienne méthode
         const modalImg = document.getElementById('modal_img')
         modalImg.addEventListener('click', closeModal)
