@@ -12,7 +12,7 @@ export default class PhotographerDetails {
     }
 
     async render(photographer) {
-        const { id, name, city, country, tagline, portrait } = photographer
+        const { id, name, city, country, tagline, portrait } = this
 
     const photographerSection = document.createElement('section')
     photographerSection.className = 'photograph-details'
