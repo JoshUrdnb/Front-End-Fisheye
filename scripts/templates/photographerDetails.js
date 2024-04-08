@@ -12,7 +12,7 @@ export default class PhotographerDetails {
     }
 
     async render() { // render param... vide ?
-        const { id, name, city, country, tagline, portrait /*, media (suppression media...) */ } = this // plus besoin de photographer, instance de this en lieu est place pour la methode render, prend en compte la class
+        const { /*id,*/ name, city, country, tagline, portrait /*, media (suppression media...) */ } = this // plus besoin de photographer, instance de this en lieu est place pour la methode render, prend en compte la class
         
         const photographerSection = document.createElement('section')
         photographerSection.className = 'photograph-details'
@@ -60,11 +60,28 @@ export default class PhotographerDetails {
         detailsElement.appendChild(mediaContainerDiv)
         mediaContainerDiv.className = 'media-container'
 
-        this.renderMedia(id) // suppression media, appel du param... (id) uniquement.
+        // this.renderMedia(id) // suppression media, appel du param... (id) uniquement.
 
+        const sortTitleButton = document.createElement('button')
+        sortTitleButton.textContent = 'Trier par titre'
+        sortTitleButton.addEventListener('click', () => {
+            this.sortMediaByTitle()
+            this.renderMedia(this.media, this.id)
+        });
+        detailsElement.appendChild(sortTitleButton)
     }
 
-    renderMedia(id) { // idem supp... de media pour ne laisser que id.
+    sortMediaByTitle() {
+        this.media.sort((a, b) => {
+            const titleA = a.title.toLowerCase()
+            const titleB = b.title.toLowerCase()
+            if (titleA < titleB) return -1
+            if (titleA > titleB) return 1
+            return 0
+        });
+    }
+
+    renderMedia() { // idem supp... de media pour ne laisser que id. UPDATE : on supprime id aussi pour prefere l'utilisation de this.id a l'interieur de la methode renderMedia.
 
         const mediaContainerDiv = document.querySelector('.media-container')
         mediaContainerDiv.innerHTML = ''
@@ -76,13 +93,13 @@ export default class PhotographerDetails {
             if (media.image) { // methode sort
                 // Si c'est pour une image
                 const mediaImg = document.createElement('img')
-                mediaImg.src = `assets/media/${id}/${media.image}`
+                mediaImg.src = `assets/media/${this.id}/${media.image}`
                 mediaImg.alt = media.title;
                 mediaItemDiv.appendChild(mediaImg)
             } else if (media.video) {
                 // Si c'est pour une vidéo
                 const mediaVideo = document.createElement('video')
-                mediaVideo.src = `assets/media/${id}/${media.video}`
+                mediaVideo.src = `assets/media/${this.id}/${media.video}`
                 mediaVideo.alt = media.title;
                 mediaVideo.controls = true;
                 mediaItemDiv.appendChild(mediaVideo);

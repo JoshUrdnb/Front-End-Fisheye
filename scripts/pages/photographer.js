@@ -3,24 +3,31 @@ import {closeModal} from "../utils/contactForm.js"
 
 async function getPhotographer(id) {
     try {
-        const response = await fetch("../../data/photographers.json");
+        const response = await fetch("../../data/photographers.json")
         if (!response.ok) {
-            throw new Error('Failed to fetch data');
+            throw new Error('Failed to fetch data')
         }
-        const data = await response.json();
+        const data = await response.json()
         const photographer = data.photographers.find((photographer) => {
-            return photographer.id === id;
+            return photographer.id === id
         });
 
-        photographer.media = data.media.filter((media) => {
-            return media.photographerId === id;
+        // photographer.media = data.media.filter((media) => {
+        //     return media.photographerId === id
+        // });
+
+        photographer.media = data.media
+        .filter((media) => media.photographerId === id)
+        .sort((a, b) => {
+            // Logique de tri des médias ici, par exemple, par date ou par likes
+            return a.date - b.date;
         });
 
-        console.log(data);
+        console.log(data)
 
-        return photographer;
+        return photographer
     } catch (error) {
-        console.error('Error fetching photographers data', error);
+        console.error('Error fetching photographers data', error)
     }
 }
 
@@ -33,7 +40,7 @@ async function init() {
         const photographerDetails = new PhotographerDetails(photographer) // je crée mon instance de PhotographerDetails
         photographerDetails.render() // j'appel mon instance (avec la methode render)
 
-        //      photographerDetails(photographer); // ancienne méthode
+        // photographerDetails(photographer); // ancienne méthode
         const modalImg = document.getElementById('modal_img')
         modalImg.addEventListener('click', closeModal)
     } catch (error) {
@@ -41,4 +48,4 @@ async function init() {
     }
 }
 
-init();
+init()
