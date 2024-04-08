@@ -12,7 +12,7 @@ export default class PhotographerDetails {
     }
 
     async render() { // render param... vide ?
-        const { id, name, city, country, tagline, portrait, media} = this // plus besoin de photographer, instance de this en lieu est place pour la methode render, prend en compte la class
+        const { id, name, city, country, tagline, portrait /*, media (suppression media...) */ } = this // plus besoin de photographer, instance de this en lieu est place pour la methode render, prend en compte la class
         
         const photographerSection = document.createElement('section')
         photographerSection.className = 'photograph-details'
@@ -60,16 +60,16 @@ export default class PhotographerDetails {
         detailsElement.appendChild(mediaContainerDiv)
         mediaContainerDiv.className = 'media-container'
 
-        this.renderMedia(media, id)
+        this.renderMedia(id) // suppression media, appel du param... (id) uniquement.
 
     }
 
-    renderMedia(media, id) {
+    renderMedia(id) { // idem supp... de media pour ne laisser que id.
 
         const mediaContainerDiv = document.querySelector('.media-container')
         mediaContainerDiv.innerHTML = ''
 
-        media.forEach((media) => { // this. au lieu de photographer
+        this.media.forEach((media) => { // this. au lieu de photographer
             const mediaItemDiv = document.createElement('div')
             mediaItemDiv.className = 'media-item'
         
