@@ -13,7 +13,7 @@ export default class PhotographerDetails {
 
     async render() { // render param... vide ?
         const { /*id,*/ name, city, country, tagline, portrait /*, media (suppression media...) */ } = this // plus besoin de photographer, instance de this en lieu est place pour la methode render, prend en compte la class
-        
+
         const photographerSection = document.createElement('section')
         photographerSection.className = 'photograph-details'
 
@@ -56,19 +56,20 @@ export default class PhotographerDetails {
         detailsElement.innerHTML = ''
         detailsElement.appendChild(photographerSection)
 
-        const mediaContainerDiv = document.createElement('div')
-        detailsElement.appendChild(mediaContainerDiv)
-        mediaContainerDiv.className = 'media-container'
-
-        // this.renderMedia(id) // suppression media, appel du param... (id) uniquement.
-
         const sortTitleButton = document.createElement('button')
         sortTitleButton.textContent = 'Trier par titre'
         sortTitleButton.addEventListener('click', () => {
             this.sortMediaByTitle()
             this.renderMedia(this.media, this.id)
         });
+
         detailsElement.appendChild(sortTitleButton)
+
+        const mediaContainerDiv = document.createElement('div')
+        detailsElement.appendChild(mediaContainerDiv)
+        mediaContainerDiv.className = 'media-container'
+
+        this.renderMedia()
     }
 
     sortMediaByTitle() {
@@ -104,7 +105,7 @@ export default class PhotographerDetails {
                 mediaVideo.controls = true;
                 mediaItemDiv.appendChild(mediaVideo);
             }
-        
+
             const titleParagraph = document.createElement('p')
             titleParagraph.textContent = `Title: ${media.title}`
         
@@ -113,6 +114,13 @@ export default class PhotographerDetails {
         
             const likesParagraph = document.createElement('p')
             likesParagraph.textContent = `Likes: ${media.likes}`
+
+            const likeButton = document.createElement('button')
+            likeButton.textContent = 'Like'
+            likeButton.addEventListener('click', () => {
+                media.likes++
+                likesParagraph.textContent = `Likes: ${media.likes}`
+            });
         
             const dateParagraph = document.createElement('p')
             dateParagraph.textContent = `Date: ${media.date}`
@@ -125,7 +133,7 @@ export default class PhotographerDetails {
             mediaItemDiv.appendChild(likesParagraph)
             mediaItemDiv.appendChild(dateParagraph)
             mediaItemDiv.appendChild(priceParagraph)
-        
+            mediaItemDiv.appendChild(likeButton)
             mediaContainerDiv.appendChild(mediaItemDiv)
         });
     }
