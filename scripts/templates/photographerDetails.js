@@ -57,6 +57,9 @@ export default class PhotographerDetails {
         detailsElement.innerHTML = ''
         detailsElement.appendChild(photographerSection)
 
+        const likesElement = document.getElementById('likes');
+        likesElement.textContent = `Likes: ${this.likedMedia.length}`;
+
         const dropdownMenu = document.createElement('select')
         dropdownMenu.addEventListener('change', (e) => {
             const selectedOption = e.target.value
@@ -68,6 +71,7 @@ export default class PhotographerDetails {
                 this.sortMediaByDate()
             }
             this.renderMedia(this.media, this.id)
+            this.renderTotalLikes()
         });
 
         const options = [
@@ -91,6 +95,7 @@ export default class PhotographerDetails {
         mediaContainerDiv.className = 'media-container'
 
         this.renderMedia()
+        this.renderTotalLikes()
     }
 
     sortMediaByTitle() {
@@ -113,6 +118,18 @@ export default class PhotographerDetails {
         this.media.sort((a, b) => {
             return new Date(b.date) - new Date(a.date);
         });
+    }
+
+    // renderTotalLikes() {
+    //     const likesElement = document.getElementById('likes');
+    //     const totalLikes = this.likedMedia.reduce((total, media) => total + media.likes, 0);
+    //     likesElement.textContent = `Total Likes: ${totalLikes}`;
+    // }
+
+    renderTotalLikes() {
+        const likesElement = document.getElementById('likes');
+        const totalLikes = this.media.reduce((total, media) => total + media.likes, 0);
+        likesElement.textContent = `Total Likes: ${totalLikes}`;
     }
 
     renderMedia() { // idem supp... de media pour ne laisser que id. UPDATE : on supprime id aussi pour prefere l'utilisation de this.id a l'interieur de la methode renderMedia.
@@ -156,6 +173,7 @@ export default class PhotographerDetails {
                     likesParagraph.textContent = `Likes: ${media.likes}`
                     this.likedMedia.push(media) // Ajoute le média à la liste des médias aimés
                     likeButton.disabled = true // Désactive le bouton de like après le clic
+                    this.renderTotalLikes(); // Mise a jour du nombre total de like par 'like' sur un media
                 }
             });
         
