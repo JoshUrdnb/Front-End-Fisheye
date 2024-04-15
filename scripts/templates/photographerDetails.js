@@ -65,6 +65,16 @@ export default class PhotographerDetails {
 
         detailsElement.appendChild(sortTitleButton)
 
+        // Ajout du bouton de tri par likes
+        const sortLikesButton = document.createElement('button')
+        sortLikesButton.textContent = 'Trier par likes'
+        sortLikesButton.addEventListener('click', () => {
+            this.sortMediaByLikes() // Trie les médias par likes
+            this.renderMedia(this.media, this.id) // Réaffiche les médias triés dans l'interface
+        });
+        
+        detailsElement.appendChild(sortLikesButton)
+
         const mediaContainerDiv = document.createElement('div')
         detailsElement.appendChild(mediaContainerDiv)
         mediaContainerDiv.className = 'media-container'
@@ -79,6 +89,12 @@ export default class PhotographerDetails {
             if (titleA < titleB) return -1
             if (titleA > titleB) return 1
             return 0
+        });
+    }
+
+    sortMediaByLikes() {
+        this.media.sort((a, b) => {
+            return b.likes - a.likes; // Trie les médias par ordre décroissant de likes
         });
     }
 
