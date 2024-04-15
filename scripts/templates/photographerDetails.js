@@ -18,11 +18,11 @@ export default class PhotographerDetails {
         photographerSection.className = 'photograph-details'
 
         const detailDiv = document.createElement('div')
-        detailDiv.className = 'photograph-detail';
+        detailDiv.className = 'photograph-detail'
 
         const nameHeading = document.createElement('h2')
         nameHeading.className = 'photograph-name'
-        nameHeading.textContent = name;
+        nameHeading.textContent = name
 
         const locationParagraph = document.createElement('p')
         locationParagraph.className = 'photograph-location'
@@ -30,7 +30,7 @@ export default class PhotographerDetails {
 
         const taglineParagraph = document.createElement('p')
         taglineParagraph.className = 'photograph-tagline'
-        taglineParagraph.textContent = tagline;
+        taglineParagraph.textContent = tagline
 
         detailDiv.appendChild(nameHeading)
         detailDiv.appendChild(locationParagraph)
@@ -56,33 +56,34 @@ export default class PhotographerDetails {
         detailsElement.innerHTML = ''
         detailsElement.appendChild(photographerSection)
 
-        const sortTitleButton = document.createElement('button')
-        sortTitleButton.textContent = 'Trier par titre'
-        sortTitleButton.addEventListener('click', () => {
-            this.sortMediaByTitle()
+        const dropdownMenu = document.createElement('select')
+        dropdownMenu.addEventListener('change', (e) => {
+            const selectedOption = e.target.value
+            if (selectedOption === 'title') {
+                this.sortMediaByTitle()
+            } else if (selectedOption === 'likes') {
+                this.sortMediaByLikes()
+            } else if (selectedOption === 'date') {
+                this.sortMediaByDate()
+            }
             this.renderMedia(this.media, this.id)
         });
 
-        detailsElement.appendChild(sortTitleButton)
+        const options = [
+            { label: 'Trier par :' },
+            { value: 'title', label: 'Titre' },
+            { value: 'likes', label: 'Likes' },
+            { value: 'date', label: 'Date' }
+        ]
 
-        // Ajout du bouton de tri par likes
-        const sortLikesButton = document.createElement('button')
-        sortLikesButton.textContent = 'Trier par likes'
-        sortLikesButton.addEventListener('click', () => {
-            this.sortMediaByLikes() // Trie les médias par likes
-            this.renderMedia(this.media, this.id) // Réaffiche les médias triés dans l'interface
+        options.forEach(option => {
+            const optionElement = document.createElement('option')
+            optionElement.value = option.value
+            optionElement.textContent = option.label
+            dropdownMenu.appendChild(optionElement)
         });
-        
-        detailsElement.appendChild(sortLikesButton)
 
-        const sortDateButton = document.createElement('button')
-        sortDateButton.textContent = 'Trier par Date'
-        sortDateButton.addEventListener('click', () => {
-            this.sortMediaByDate()
-            this.renderMedia(this.media, this.id)
-        });
-                
-        detailsElement.appendChild(sortDateButton)
+        detailsElement.appendChild(dropdownMenu)
 
         const mediaContainerDiv = document.createElement('div')
         detailsElement.appendChild(mediaContainerDiv)
