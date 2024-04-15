@@ -75,6 +75,15 @@ export default class PhotographerDetails {
         
         detailsElement.appendChild(sortLikesButton)
 
+        const sortDateButton = document.createElement('button')
+        sortDateButton.textContent = 'Trier par Date'
+        sortDateButton.addEventListener('click', () => {
+            this.sortMediaByDate()
+            this.renderMedia(this.media, this.id)
+        });
+                
+        detailsElement.appendChild(sortDateButton)
+
         const mediaContainerDiv = document.createElement('div')
         detailsElement.appendChild(mediaContainerDiv)
         mediaContainerDiv.className = 'media-container'
@@ -94,7 +103,13 @@ export default class PhotographerDetails {
 
     sortMediaByLikes() {
         this.media.sort((a, b) => {
-            return b.likes - a.likes; // Trie les médias par ordre décroissant de likes
+            return b.likes - a.likes
+        });
+    }
+
+    sortMediaByDate() {
+        this.media.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
         });
     }
 
