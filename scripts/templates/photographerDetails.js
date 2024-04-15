@@ -9,6 +9,7 @@ export default class PhotographerDetails {
         this.tagline = photographer.tagline
         this.portrait = photographer.portrait
         this.media = photographer.media
+        this.likedMedia = []// suivre etat du like, tableau vide
     }
 
     async render() { // render param... vide ?
@@ -150,8 +151,12 @@ export default class PhotographerDetails {
             const likeButton = document.createElement('button')
             likeButton.textContent = 'Like'
             likeButton.addEventListener('click', () => {
-                media.likes++
-                likesParagraph.textContent = `Likes: ${media.likes}`
+                if (!this.likedMedia.includes(media)) { // Vérifie si le média n'a pas déjà été aimé
+                    media.likes++
+                    likesParagraph.textContent = `Likes: ${media.likes}`
+                    this.likedMedia.push(media) // Ajoute le média à la liste des médias aimés
+                    likeButton.disabled = true // Désactive le bouton de like après le clic
+                }
             });
         
             const dateParagraph = document.createElement('p')
