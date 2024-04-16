@@ -10,6 +10,7 @@ export default class PhotographerDetails {
         this.portrait = photographer.portrait
         this.media = photographer.media
         this.likedMedia = []// suivre etat du like, tableau vide
+        this.price = photographer.price
     }
 
     async render() { // render param... vide ?
@@ -129,7 +130,7 @@ export default class PhotographerDetails {
     renderTotalLikes() {
         const likesElement = document.getElementById('likes');
         const totalLikes = this.media.reduce((total, media) => total + media.likes, 0);
-        likesElement.textContent = `Total Likes: ${totalLikes}`;
+        likesElement.textContent = `Total Likes: ${totalLikes}, Prix: ${this.price}`;
     }
 
     renderMedia() { // idem supp... de media pour ne laisser que id. UPDATE : on supprime id aussi pour prefere l'utilisation de this.id a l'interieur de la methode renderMedia.
