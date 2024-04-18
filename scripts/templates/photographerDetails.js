@@ -9,12 +9,12 @@ export default class PhotographerDetails {
         this.tagline = photographer.tagline
         this.portrait = photographer.portrait
         this.media = photographer.media
-        this.likedMedia = []// suivre etat du like, tableau vide
+        this.likedMedia = []
         this.price = photographer.price
     }
 
-    async render() { // render param... vide ?
-        const { /*id,*/ name, city, country, tagline, portrait /*, media (suppression media...) */ } = this // plus besoin de photographer, instance de this en lieu est place pour la methode render, prend en compte la class
+    async render() {
+        const { name, city, country, tagline, portrait } = this
 
         const photographerSection = document.createElement('section')
         photographerSection.className = 'photograph-details'
@@ -121,35 +121,37 @@ export default class PhotographerDetails {
         });
     }
 
-    // renderTotalLikes() {
-    //     const likesElement = document.getElementById('likes');
-    //     const totalLikes = this.likedMedia.reduce((total, media) => total + media.likes, 0);
-    //     likesElement.textContent = `Total Likes: ${totalLikes}`;
-    // }
-
     renderTotalLikes() {
         const likesElement = document.getElementById('likes');
         const totalLikes = this.media.reduce((total, media) => total + media.likes, 0);
         likesElement.textContent = `Total Likes: ${totalLikes}, Prix: ${this.price}`;
     }
 
-    renderMedia() { // idem supp... de media pour ne laisser que id. UPDATE : on supprime id aussi pour prefere l'utilisation de this.id a l'interieur de la methode renderMedia.
-
+    renderMedia() {
         const mediaContainerDiv = document.querySelector('.media-container')
         mediaContainerDiv.innerHTML = ''
 
-        this.media.forEach((media) => { // this. au lieu de photographer
+        this.media.forEach((media) => {
             const mediaItemDiv = document.createElement('div')
             mediaItemDiv.className = 'media-item'
         
-            if (media.image) { // methode sort
-                // Si c'est pour une image
+            if (media.image) {
                 const mediaImg = document.createElement('img')
                 mediaImg.src = `assets/media/${this.id}/${media.image}`
                 mediaImg.alt = media.title;
                 mediaItemDiv.appendChild(mediaImg)
+
+                const modalPicture = document.getElementById('modalPicture')
+                mediaImg.addEventListener('click', ()=> {
+
+                    const mediaImg2 = document.createElement('img')
+                    mediaImg2.src = `assets/media/${this.id}/${media.image}`
+                    mediaImg2.alt = media.title;
+                    modalPicture.appendChild(mediaImg2)
+
+                })
+                
             } else if (media.video) {
-                // Si c'est pour une vidéo
                 const mediaVideo = document.createElement('video')
                 mediaVideo.src = `assets/media/${this.id}/${media.video}`
                 mediaVideo.alt = media.title;
