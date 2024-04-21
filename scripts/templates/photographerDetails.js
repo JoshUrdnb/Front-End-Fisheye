@@ -59,7 +59,7 @@ export default class PhotographerDetails {
         detailsElement.appendChild(photographerSection)
 
         const likesElement = document.getElementById('likes');
-        likesElement.textContent = `Likes: ${this.likedMedia.length}`;
+        likesElement.textContent = `Likes: ${this.likedMedia.length}`
 
         const dropdownMenu = document.createElement('select')
         dropdownMenu.addEventListener('change', (e) => {
@@ -122,9 +122,9 @@ export default class PhotographerDetails {
     }
 
     renderTotalLikes() {
-        const likesElement = document.getElementById('likes');
-        const totalLikes = this.media.reduce((total, media) => total + media.likes, 0);
-        likesElement.textContent = `Total Likes: ${totalLikes}, Prix: ${this.price}`;
+        const likesElement = document.getElementById('likes')
+        const totalLikes = this.media.reduce((total, media) => total + media.likes, 0)
+        likesElement.textContent = `Total Likes: ${totalLikes}, Prix: ${this.price}`
     }
 
     renderMedia() {
@@ -141,14 +141,13 @@ export default class PhotographerDetails {
                 mediaImg.alt = media.title;
                 mediaItemDiv.appendChild(mediaImg)
 
+                //modal lightbox ---------------------------------------------------
                 const modalPicture = document.getElementById('modalPicture')
                 mediaImg.addEventListener('click', ()=> {
-
                     const mediaImg2 = document.createElement('img')
                     mediaImg2.src = `assets/media/${this.id}/${media.image}`
                     mediaImg2.alt = media.title;
-                    modalPicture.appendChild(mediaImg2)
-
+                modalPicture.appendChild(mediaImg2)
                 })
                 
             } else if (media.video) {
@@ -156,13 +155,13 @@ export default class PhotographerDetails {
                 mediaVideo.src = `assets/media/${this.id}/${media.video}`
                 mediaVideo.alt = media.title;
                 mediaVideo.controls = true;
-                mediaItemDiv.appendChild(mediaVideo);
+                mediaItemDiv.appendChild(mediaVideo)
             }
 
             const titleParagraph = document.createElement('p')
             titleParagraph.textContent = `Title: ${media.title}`
         
-            const typeParagraph = document.createElement('p');
+            const typeParagraph = document.createElement('p')
             typeParagraph.textContent = `Type: ${media.video ? 'Video' : 'Image'}`
         
             const likesParagraph = document.createElement('p')
