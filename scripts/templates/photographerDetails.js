@@ -127,6 +127,23 @@ export default class PhotographerDetails {
         likesElement.textContent = `Total Likes: ${totalLikes}, Prix: ${this.price}`
     }
 
+    // methode open & close
+    openModal() {
+        const lightbox = document.getElementById('lightbox')
+        if (lightbox) {
+            lightbox.style.display = 'flex'
+            lightbox.style.justifyContent = 'center'
+            lightbox.style.alignItems = 'center'
+        }
+    }
+
+    closeModal() {
+        const lightbox = document.getElementById('lightbox')
+        if (lightbox) {
+            lightbox.style.display = 'none'
+        }
+    }
+
     renderMedia() {
         const mediaContainerDiv = document.querySelector('.media-container')
         mediaContainerDiv.innerHTML = ''
@@ -141,14 +158,18 @@ export default class PhotographerDetails {
                 mediaImg.alt = media.title;
                 mediaItemDiv.appendChild(mediaImg)
 
-                //modal lightbox ---------------------------------------------------
-                const modalPicture = document.getElementById('modalPicture')
+                //modal lightbox
                 mediaImg.addEventListener('click', ()=> {
-                    const mediaImg2 = document.createElement('img')
-                    mediaImg2.src = `assets/media/${this.id}/${media.image}`
-                    mediaImg2.alt = media.title;
-                modalPicture.appendChild(mediaImg2)
-                })
+                    this.openModal()
+                        const modalContent = document.getElementById('modalContent')
+                        modalContent.innerHTML = ''
+                        const mediaImg2 = document.createElement('img')
+                        mediaImg2.src = `assets/media/${this.id}/${media.image}`
+                        mediaImg2.alt = media.title
+                        mediaImg2.style.maxHeight = '300px'
+                        mediaImg2.style.maxWidth = '300px'
+                        modalContent.appendChild(mediaImg2)
+                });
                 
             } else if (media.video) {
                 const mediaVideo = document.createElement('video')
@@ -156,6 +177,12 @@ export default class PhotographerDetails {
                 mediaVideo.alt = media.title;
                 mediaVideo.controls = true;
                 mediaItemDiv.appendChild(mediaVideo)
+            }
+
+            // EventListener pour fermer la lightbox, bouton de fermeture est cliqué
+            const closeModalBtn = document.getElementById('closeModalBtn')
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', () => this.closeModal())
             }
 
             const titleParagraph = document.createElement('p')
