@@ -168,16 +168,27 @@ export default class PhotographerDetails {
     nextImage() {
         if (this.currentIndex < this.media.length - 1) {
             this.currentIndex++; // Augmente l'index
-            this.loadCurrentImage(); // Charge l'image actuelle
+        } else {
+            this.currentIndex > 0
         }
+        this.loadCurrentImage(); // Charge l'image actuelle
     }
 
     // Méthode pour charger l'image actuelle dans la lightbox
     loadCurrentImage() {
         const media = this.media[this.currentIndex];
+        const modalContent = document.getElementById('modalContent');
+        modalContent.innerHTML = ''; // Efface le contenu actuel 
+
+    // if (media && media.image) {
+    //         const mediaImg = document.createElement('img');
+    //         mediaImg.src = `assets/media/${this.id}/${media.image}`;
+    //         mediaImg.alt = media.title;
+    //         mediaImg.style.maxHeight = '300px';
+    //         mediaImg.style.maxWidth = '300px';
+    //         modalContent.appendChild(mediaImg);
+    // }
         if (media && media.image) {
-            const modalContent = document.getElementById('modalContent');
-            modalContent.innerHTML = ''; // Efface le contenu actuel
             const mediaImg = document.createElement('img');
             mediaImg.src = `assets/media/${this.id}/${media.image}`;
             mediaImg.alt = media.title;
@@ -197,7 +208,7 @@ export default class PhotographerDetails {
         
             if (media.image) {
                 const mediaLink = document.createElement('a');
-                mediaLink.src = `assets/media/${this.id}/${media.image}`
+                // mediaLink.src = `assets/media/${this.id}/${media.image}`
 
                 const mediaImg = document.createElement('img');
                 mediaImg.src = `assets/media/${this.id}/${media.image}`;
@@ -212,14 +223,6 @@ export default class PhotographerDetails {
                     this.openModal()
                     this.currentIndex = this.media.indexOf(media); // Met à jour l'index de l'image actuelle
                     this.loadCurrentImage(); // Charge l'image actuelle
-                        const modalContent = document.getElementById('modalContent')
-                        modalContent.innerHTML = ''
-                        const mediaImg2 = document.createElement('img')
-                        mediaImg2.src = `assets/media/${this.id}/${media.image}`
-                        mediaImg2.alt = media.title
-                        mediaImg2.style.maxHeight = '300px'
-                        mediaImg2.style.maxWidth = '300px'
-                        modalContent.appendChild(mediaImg2)
                 });
                 
             } else if (media.video) {
