@@ -196,13 +196,19 @@ export default class PhotographerDetails {
             mediaItemDiv.className = 'media-item'
         
             if (media.image) {
-                const mediaImg = document.createElement('img')
-                mediaImg.src = `assets/media/${this.id}/${media.image}`
+                const mediaLink = document.createElement('a');
+                mediaLink.src = `assets/media/${this.id}/${media.image}`
+
+                const mediaImg = document.createElement('img');
+                mediaImg.src = `assets/media/${this.id}/${media.image}`;
                 mediaImg.alt = media.title;
-                mediaItemDiv.appendChild(mediaImg)
+                mediaLink.appendChild(mediaImg);
+            
+                mediaItemDiv.appendChild(mediaLink);
 
                 //modal lightbox
-                mediaImg.addEventListener('click', ()=> {
+                mediaImg.addEventListener('click', (e)=> {
+                    e.preventDefault() // Empeche l'ouverture du lien, modifie le comportement par defaut
                     this.openModal()
                     this.currentIndex = this.media.indexOf(media); // Met à jour l'index de l'image actuelle
                     this.loadCurrentImage(); // Charge l'image actuelle
