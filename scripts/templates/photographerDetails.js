@@ -11,6 +11,7 @@ export default class PhotographerDetails {
         this.media = photographer.media
         this.likedMedia = []
         this.price = photographer.price
+        this.currentIndex = 0 // Ajoutez une propriété pour suivre l'index de l'image actuellement affichée
     }
 
     async render() {
@@ -134,6 +135,17 @@ export default class PhotographerDetails {
             lightbox.style.display = 'flex'
             lightbox.style.justifyContent = 'center'
             lightbox.style.alignItems = 'center'
+
+            // Ajoutez des boutons pour la navigation entre les images
+            const previousButton = document.createElement('button');
+            previousButton.textContent = 'Previous';
+            previousButton.addEventListener('click', () => this.previousImage());
+            lightbox.appendChild(previousButton);
+
+            const nextButton = document.createElement('button');
+            nextButton.textContent = 'Next';
+            nextButton.addEventListener('click', () => this.nextImage());
+            lightbox.appendChild(nextButton);
         }
     }
 
@@ -141,6 +153,37 @@ export default class PhotographerDetails {
         const lightbox = document.getElementById('lightbox')
         if (lightbox) {
             lightbox.style.display = 'none'
+        }
+    }
+
+    // Méthode pour afficher l'image précédente
+    previousImage() {
+        if (this.currentIndex > 0) {
+            this.currentIndex--; // Diminue l'index
+            this.loadCurrentImage(); // Charge l'image actuelle
+        }
+    }
+
+    // Méthode pour afficher l'image suivante
+    nextImage() {
+        if (this.currentIndex < this.media.length - 1) {
+            this.currentIndex++; // Augmente l'index
+            this.loadCurrentImage(); // Charge l'image actuelle
+        }
+    }
+
+    // Méthode pour charger l'image actuelle dans la lightbox
+    loadCurrentImage() {
+        const media = this.media[this.currentIndex];
+        if (media && media.image) {
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = ''; // Efface le contenu actuel
+            const mediaImg = document.createElement('img');
+            mediaImg.src = `assets/media/${this.id}/${media.image}`;
+            mediaImg.alt = media.title;
+            mediaImg.style.maxHeight = '300px';
+            mediaImg.style.maxWidth = '300px';
+            modalContent.appendChild(mediaImg);
         }
     }
 
@@ -161,6 +204,8 @@ export default class PhotographerDetails {
                 //modal lightbox
                 mediaImg.addEventListener('click', ()=> {
                     this.openModal()
+                    this.currentIndex = this.media.indexOf(media); // Met à jour l'index de l'image actuelle
+                    this.loadCurrentImage(); // Charge l'image actuelle
                         const modalContent = document.getElementById('modalContent')
                         modalContent.innerHTML = ''
                         const mediaImg2 = document.createElement('img')
