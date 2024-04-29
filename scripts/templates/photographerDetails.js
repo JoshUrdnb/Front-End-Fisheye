@@ -1,4 +1,5 @@
 import {displayModal} from "../utils/contactForm.js"
+import MediaFactory from "./mediaFactory.js"
 
 export default class PhotographerDetails {
     constructor(photographer) {
@@ -11,7 +12,7 @@ export default class PhotographerDetails {
         this.media = photographer.media
         this.likedMedia = []
         this.price = photographer.price
-        this.currentIndex = 0 // Ajoutez une propriété pour suivre l'index de l'image actuellement affichée
+        this.currentIndex = 0
     }
 
     async render() {
@@ -180,14 +181,6 @@ export default class PhotographerDetails {
         const modalContent = document.getElementById('modalContent');
         modalContent.innerHTML = ''; // Efface le contenu actuel 
 
-    // if (media && media.image) {
-    //         const mediaImg = document.createElement('img');
-    //         mediaImg.src = `assets/media/${this.id}/${media.image}`;
-    //         mediaImg.alt = media.title;
-    //         mediaImg.style.maxHeight = '300px';
-    //         mediaImg.style.maxWidth = '300px';
-    //         modalContent.appendChild(mediaImg);
-    // }
         if (media && media.image) {
             const mediaImg = document.createElement('img');
             mediaImg.src = `assets/media/${this.id}/${media.image}`;
@@ -205,74 +198,56 @@ export default class PhotographerDetails {
         this.media.forEach((media) => {
             const mediaItemDiv = document.createElement('div')
             mediaItemDiv.className = 'media-item'
-        
-            if (media.image) {
-                const mediaLink = document.createElement('a');
-                // mediaLink.src = `assets/media/${this.id}/${media.image}`
+    
+            const mediaFactory = new MediaFactory()
+            const mediaElement = mediaFactory.createMediaFactory(media)
+    
+            if (mediaElement) {
+                // mediaItemDiv.appendChild(mediaElement.render())
+                const renderedMedia = mediaElement.render()
 
-                const mediaImg = document.createElement('img');
-                mediaImg.src = `assets/media/${this.id}/${media.image}`;
-                mediaImg.alt = media.title;
-                mediaLink.appendChild(mediaImg);
-            
-                mediaItemDiv.appendChild(mediaLink);
-
-                //modal lightbox
-                mediaImg.addEventListener('click', (e)=> {
-                    e.preventDefault() // Empeche l'ouverture du lien, modifie le comportement par defaut
-                    this.openModal()
-                    this.currentIndex = this.media.indexOf(media); // Met à jour l'index de l'image actuelle
-                    this.loadCurrentImage(); // Charge l'image actuelle
-                });
-                
-            } else if (media.video) {
-                const mediaVideo = document.createElement('video')
-                mediaVideo.src = `assets/media/${this.id}/${media.video}`
-                mediaVideo.alt = media.title;
-                mediaVideo.controls = true;
-                mediaItemDiv.appendChild(mediaVideo)
-            }
-
-            // EventListener pour fermer la lightbox, bouton de fermeture est cliqué
-            const closeModalBtn = document.getElementById('closeModalBtn')
-            if (closeModalBtn) {
-                closeModalBtn.addEventListener('click', () => this.closeModal())
-            }
-
-            const titleParagraph = document.createElement('p')
-            titleParagraph.textContent = `Title: ${media.title}`
-        
-            const typeParagraph = document.createElement('p')
-            typeParagraph.textContent = `Type: ${media.video ? 'Video' : 'Image'}`
-        
-            const likesParagraph = document.createElement('p')
-            likesParagraph.textContent = `Likes: ${media.likes}`
-
-            const likeButton = document.createElement('button')
-            likeButton.textContent = 'Like'
-            likeButton.addEventListener('click', () => {
-                if (!this.likedMedia.includes(media)) { // Vérifie si le média n'a pas déjà été aimé
-                    media.likes++
-                    likesParagraph.textContent = `Likes: ${media.likes}`
-                    this.likedMedia.push(media) // Ajoute le média à la liste des médias aimés
-                    likeButton.disabled = true // Désactive le bouton de like après le clic
-                    this.renderTotalLikes(); // Mise a jour du nombre total de like par 'like' sur un media
+                if (media.image) {
+                    renderedMedia.src = `assets/media/${this.id}/${media.image}`
+                } else if (media.video) {
+                    renderedMedia.src = `assets/media/${this.id}/${media.video}`
                 }
-            });
-        
-            const dateParagraph = document.createElement('p')
-            dateParagraph.textContent = `Date: ${media.date}`
-        
-            const priceParagraph = document.createElement('p')
-            priceParagraph.textContent = `Price: ${media.price}`
-        
-            mediaItemDiv.appendChild(titleParagraph)
-            mediaItemDiv.appendChild(typeParagraph)
-            mediaItemDiv.appendChild(likesParagraph)
-            mediaItemDiv.appendChild(dateParagraph)
-            mediaItemDiv.appendChild(priceParagraph)
-            mediaItemDiv.appendChild(likeButton)
-            mediaContainerDiv.appendChild(mediaItemDiv)
+
+                const titleParagraph = document.createElement('p')
+                titleParagraph.textContent = `Title: ${media.title}`
+    
+                const typeParagraph = document.createElement('p')
+                typeParagraph.textContent = `Type: ${media.video ? 'Video' : 'Image'}`
+    
+                const likesParagraph = document.createElement('p')
+                likesParagraph.textContent = `Likes: ${media.likes}`
+    
+                const likeButton = document.createElement('button')
+                likeButton.textContent = 'Like'
+                likeButton.addEventListener('click', () => {
+                    if (!this.likedMedia.includes(media)) {
+                        media.likes++
+                        likesParagraph.textContent = `Likes: ${media.likes}`
+                        this.likedMedia.push(media)
+                        likeButton.disabled = true
+                        this.renderTotalLikes()
+                    }
+                });
+    
+                const dateParagraph = document.createElement('p')
+                dateParagraph.textContent = `Date: ${media.date}`
+    
+                const priceParagraph = document.createElement('p')
+                priceParagraph.textContent = `Price: ${media.price}`
+
+                mediaItemDiv.appendChild(renderedMedia)
+                mediaItemDiv.appendChild(titleParagraph)
+                mediaItemDiv.appendChild(typeParagraph)
+                mediaItemDiv.appendChild(likesParagraph)
+                mediaItemDiv.appendChild(dateParagraph)
+                mediaItemDiv.appendChild(priceParagraph)
+                mediaItemDiv.appendChild(likeButton)
+                mediaContainerDiv.appendChild(mediaItemDiv)
+            }
         });
     }
 }
