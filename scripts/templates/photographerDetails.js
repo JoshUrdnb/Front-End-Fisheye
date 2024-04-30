@@ -138,6 +138,8 @@ export default class PhotographerDetails {
             lightbox.style.justifyContent = 'center'
             lightbox.style.alignItems = 'center'
 
+            document.addEventListener('keydown', this.handleKeyDown)
+
             // Ajoutez des boutons pour la navigation entre les images
             const previousButton = document.createElement('button');
             previousButton.textContent = 'Previous'
@@ -155,6 +157,23 @@ export default class PhotographerDetails {
         const lightbox = document.getElementById('lightbox')
         if (lightbox) {
             lightbox.style.display = 'none'
+            document.removeEventListener('keydown', this.handleKeyDown)
+        }
+    }
+
+    handleKeyDown = (e) => {
+        switch (e.key) {
+            case 'ArrowLeft':
+                this.previousImage()
+                break
+            case 'ArrowRight':
+                this.nextImage()
+                break
+            case 'Escape':
+                this.closeModal()
+                break
+            default:
+                break
         }
     }
 
