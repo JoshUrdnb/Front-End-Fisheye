@@ -219,18 +219,18 @@ export default class PhotographerDetails {
             const mediaItemDiv = document.createElement('div')
             mediaItemDiv.className = 'media-item'
     
-            const mediaFactory = new MediaFactory()
-            const mediaElement = mediaFactory.createMediaFactory(media)
+            const mediaFactory = new MediaFactory(media, this.id)
+            // const mediaElement = mediaFactory.createMediaFactory(media)
     
-            if (mediaElement) {
+            if (mediaFactory) {
                 // mediaItemDiv.appendChild(mediaElement.render())
-                const renderedMedia = mediaElement.render()
+                const renderedMedia = mediaFactory.render()
 
-                if (media.image) {
-                    renderedMedia.src = `assets/media/${this.id}/${media.image}`
-                } else if (media.video) {
-                    renderedMedia.src = `assets/media/${this.id}/${media.video}`
-                }
+                // if (media.image) {
+                //     renderedMedia.src = `assets/media/${this.id}/${media.image}`
+                // } else if (media.video) {
+                //     renderedMedia.src = `assets/media/${this.id}/${media.video}`
+                // }
 
                 // const mediaLink = document.createElement('a')
                 // mediaLink.href = '#'
