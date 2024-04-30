@@ -84,9 +84,22 @@ export default class PhotographerDetails {
             { value: 'date', label: 'Date' }
         ]
 
+        const select = document.getElement('select')
+        select.id = 'sortSelect'
+
+        const label = document.createElement('label')
+        label.textContent = 'Trier par :'
+        label.htmlFor = 'sortSelect'
+
+        select.setAttribute('aria-label', 'Trier par :')
+
+        const container = document.getElementById('yourContainerId')
+        container.appendChild(label)
+        container.appendChild(select)
+
         options.forEach(option => {
             const optionElement = document.createElement('option')
-            optionElement.value = option.value
+            optionElement.value = option.value || ''
             optionElement.textContent = option.label
             dropdownMenu.appendChild(optionElement)
         });
