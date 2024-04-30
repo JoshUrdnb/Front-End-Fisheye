@@ -212,6 +212,9 @@ export default class PhotographerDetails {
                     renderedMedia.src = `assets/media/${this.id}/${media.video}`
                 }
 
+                // const mediaLink = document.createElement('a')
+                // mediaLink.href = '#'
+
                 renderedMedia.addEventListener('click', (e)=> {
                     e.preventDefault() // Empeche l'ouverture du lien, modifie le comportement par defaut
                     this.openModal()
@@ -251,6 +254,7 @@ export default class PhotographerDetails {
                 const priceParagraph = document.createElement('p')
                 priceParagraph.textContent = `Price: ${media.price}`
 
+                // mediaLink.appendChild(renderedMedia)
                 mediaItemDiv.appendChild(renderedMedia)
                 mediaItemDiv.appendChild(titleParagraph)
                 mediaItemDiv.appendChild(typeParagraph)
