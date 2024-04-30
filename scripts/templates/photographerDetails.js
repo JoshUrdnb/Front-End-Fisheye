@@ -224,7 +224,7 @@ export default class PhotographerDetails {
     
             if (mediaFactory) {
                 // mediaItemDiv.appendChild(mediaElement.render())
-                const renderedMedia = mediaFactory.render()
+                const renderedMedia = mediaFactory.render('imgGallery')
 
                 // if (media.image) {
                 //     renderedMedia.src = `assets/media/${this.id}/${media.image}`

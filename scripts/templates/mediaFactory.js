@@ -16,7 +16,7 @@ class ImageFactory {
         this.id = id
     }
 
-    render() {
+    render(className) {
         const mediaImg = document.createElement('img')
         mediaImg.src = `assets/media/${this.id}/${this.media.image}`
         // mediaImg.src = this.media.image
@@ -27,6 +27,7 @@ class ImageFactory {
         mediaImg.setAttribute('aria-label', `Image: ${this.media.title}`)
         mediaImg.style.maxHeight = '300px'
         mediaImg.style.maxWidth = '300px'
+        mediaImg.classList.add(className)
         return mediaImg
     }
 }
@@ -38,7 +39,7 @@ class VideoFactory {
         this.id = id
     }
 
-    render() {
+    render(className) {
         const mediaVideo = document.createElement('video')
         mediaVideo.src = `./assets/media/${this.id}/${this.media.video}`
         // mediaVideo.src = this.media.video
@@ -46,6 +47,8 @@ class VideoFactory {
         mediaVideo.title = this.media.title
         mediaVideo.setAttribute('aria-label', `Video: ${this.media.title}`)
         mediaVideo.controls = true
+        mediaVideo.classList.add(className)
+
         return mediaVideo
     }
 }
