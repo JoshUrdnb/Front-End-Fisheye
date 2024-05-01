@@ -35,7 +35,7 @@ class VideoFactory {
 
     render(className) {
         const mediaVideo = document.createElement('video')
-        mediaVideo.src = `./assets/media/${this.id}/${this.media.video}`
+        mediaVideo.src = `assets/media/${this.id}/${this.media.video}`
         mediaVideo.alt = this.media.title
         mediaVideo.title = this.media.title
         mediaVideo.setAttribute('aria-label', `Video: ${this.media.title}`)
