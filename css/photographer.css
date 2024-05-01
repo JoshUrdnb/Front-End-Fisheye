@@ -111,7 +111,7 @@ form textarea {
     grid-column-gap: 5px;
     grid-row-gap: 5px;
     padding: 3rem;
-    }
+}
 
 .media-container {
     margin-top: 3rem;
@@ -122,13 +122,13 @@ form textarea {
     grid-row-gap: 1rem;
 }
 
-.media-item img{
+.media-item img {
     height: 400px;
     width: 400px;
     object-fit: cover;
 }
 
-.media-item video{
+.media-item video {
     height: 400px;
     width: 400px;
     object-fit: cover;

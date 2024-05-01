@@ -130,7 +130,6 @@ export default class PhotographerDetails {
         likesElement.textContent = `Total Likes: ${totalLikes}, Prix: ${this.price}`
     }
 
-    // methode open & close
     openModal() {
         const lightbox = document.getElementById('lightbox')
         if (lightbox) {
@@ -140,8 +139,7 @@ export default class PhotographerDetails {
 
             document.addEventListener('keydown', this.handleKeyDown)
 
-            // Ajoutez des boutons pour la navigation entre les images
-            const previousButton = document.createElement('button');
+            const previousButton = document.createElement('button')
             previousButton.textContent = 'Previous'
             previousButton.addEventListener('click', () => this.previousImage())
             lightbox.appendChild(previousButton)
@@ -177,37 +175,34 @@ export default class PhotographerDetails {
         }
     }
 
-    // Méthode pour afficher l'image précédente
     previousImage() {
         if (this.currentIndex > 0) {
-            this.currentIndex-- // Diminue l'index
-            this.loadCurrentImage() // Charge l'image actuelle
+            this.currentIndex--
+            this.loadCurrentImage()
         }
     }
 
-    // Méthode pour afficher l'image suivante
     nextImage() {
         if (this.currentIndex < this.media.length - 1) {
-            this.currentIndex++ // Augmente l'index
+            this.currentIndex++
         } else {
             this.currentIndex > 0
         }
-        this.loadCurrentImage() // Charge l'image actuelle
+        this.loadCurrentImage()
     }
 
-    // Méthode pour charger l'image actuelle dans la lightbox
     loadCurrentImage() {
         const media = this.media[this.currentIndex]
         const modalContent = document.getElementById('modalContent')
-        modalContent.innerHTML = '' // Efface le contenu actuel 
+        modalContent.innerHTML = ''
 
         if (media && media.image) {
-            const mediaImg = document.createElement('img');
-            mediaImg.src = `assets/media/${this.id}/${media.image}`;
-            mediaImg.alt = media.title;
-            mediaImg.style.maxHeight = '300px';
-            mediaImg.style.maxWidth = '300px';
-            modalContent.appendChild(mediaImg);
+            const mediaImg = document.createElement('img')
+            mediaImg.src = `assets/media/${this.id}/${media.image}`
+            mediaImg.alt = media.title
+            mediaImg.style.maxHeight = '300px'
+            mediaImg.style.maxWidth = '300px'
+            modalContent.appendChild(mediaImg)
         }
     }
 
@@ -220,26 +215,18 @@ export default class PhotographerDetails {
             mediaItemDiv.className = 'media-item'
     
             const mediaFactory = new MediaFactory(media, this.id)
-            // const mediaElement = mediaFactory.createMediaFactory(media)
     
             if (mediaFactory) {
-                // mediaItemDiv.appendChild(mediaElement.render())
                 const renderedMedia = mediaFactory.render('imgGallery')
 
-                // if (media.image) {
-                //     renderedMedia.src = `assets/media/${this.id}/${media.image}`
-                // } else if (media.video) {
-                //     renderedMedia.src = `assets/media/${this.id}/${media.video}`
-                // }
-
-                // const mediaLink = document.createElement('a')
-                // mediaLink.href = '#'
+                const mediaLink = document.createElement('a')
+                mediaLink.href = '#'
 
                 renderedMedia.addEventListener('click', (e)=> {
-                    e.preventDefault() // Empeche l'ouverture du lien, modifie le comportement par defaut
+                    e.preventDefault()
                     this.openModal()
-                    this.currentIndex = this.media.indexOf(media); // Met à jour l'index de l'image actuelle
-                    this.loadCurrentImage(); // Charge l'image actuelle
+                    this.currentIndex = this.media.indexOf(media)
+                    this.loadCurrentImage()
                 });
 
                 const closeModalBtn = document.getElementById('closeModalBtn')
@@ -274,7 +261,7 @@ export default class PhotographerDetails {
                 const priceParagraph = document.createElement('p')
                 priceParagraph.textContent = `Price: ${media.price}`
 
-                // mediaLink.appendChild(renderedMedia)
+                mediaLink.appendChild(renderedMedia)
                 mediaItemDiv.appendChild(renderedMedia)
                 mediaItemDiv.appendChild(titleParagraph)
                 mediaItemDiv.appendChild(typeParagraph)
