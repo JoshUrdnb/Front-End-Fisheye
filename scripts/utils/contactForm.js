@@ -3,12 +3,12 @@ function validate (event) {
     console.log('envoyé')
 
     const form = event.target;
-    const first = form.querySelector('#first').value;
-    const last = form.querySelector('#last').value;
-    const email = form.querySelector('#email').value;
-    const message = form.querySelector('#newField').value;
+    const first = form.querySelector('#first').value
+    const last = form.querySelector('#last').value
+    const email = form.querySelector('#email').value
+    const message = form.querySelector('#newField').value
 
-    let error = false;
+    let error = false
 
     if (first.trim() === '') {
         error = true
@@ -33,17 +33,17 @@ function validate (event) {
 }
 
 export function displayModal(name) {
-    const modal = document.getElementById('contact_modal');
-    modal.style.display = 'block';
+    const modal = document.getElementById('contact_modal')
+    modal.style.display = 'block'
 
-    const naming = document.getElementById('contactFormName');
-    naming.textContent = name;
+    const naming = document.getElementById('contactFormName')
+    naming.textContent = name
 
     const closing = document.getElementById('contact_button')
     closing.addEventListener('submit', validate)
 }
 
 export function closeModal() {
-    const modal = document.getElementById('contact_modal');
-    modal.style.display = 'none';
+    const modal = document.getElementById('contact_modal')
+    modal.style.display = 'none'
 }

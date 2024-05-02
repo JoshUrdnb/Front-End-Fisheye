@@ -60,7 +60,7 @@ export default class PhotographerDetails {
         detailsElement.innerHTML = ''
         detailsElement.appendChild(photographerSection)
 
-        const likesElement = document.getElementById('likes');
+        const likesElement = document.getElementById('likes')
         likesElement.textContent = `Likes: ${this.likedMedia.length}`
 
         const dropdownMenu = document.createElement('select')

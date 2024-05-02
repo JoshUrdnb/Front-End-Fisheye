@@ -12,10 +12,6 @@ async function getPhotographer(id) {
             return photographer.id === id
         });
 
-        // photographer.media = data.media.filter((media) => {
-        //     return media.photographerId === id
-        // });
-
         photographer.media = data.media
         .filter((media) => media.photographerId === id)
         .sort((a, b) => {
