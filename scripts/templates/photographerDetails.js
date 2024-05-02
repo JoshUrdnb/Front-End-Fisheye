@@ -220,7 +220,7 @@ export default class PhotographerDetails {
                 const renderedMedia = mediaFactory.render('imgGallery')
 
                 const mediaLink = document.createElement('a')
-                mediaLink.href = '#'
+                // mediaLink.href = '#'
 
                 renderedMedia.addEventListener('click', (e)=> {
                     e.preventDefault()
@@ -262,6 +262,7 @@ export default class PhotographerDetails {
                 priceParagraph.textContent = `Price: ${media.price}`
 
                 mediaLink.appendChild(renderedMedia)
+                mediaItemDiv.appendChild(mediaLink)
                 mediaItemDiv.appendChild(renderedMedia)
                 mediaItemDiv.appendChild(titleParagraph)
                 mediaItemDiv.appendChild(typeParagraph)
