@@ -14,6 +14,14 @@ header {
     height: 90px;
 }
 
+/* .center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 60vh;
+} */
+
 h1 {
     color: #901C1C;
     margin-right: 100px;
@@ -49,9 +57,22 @@ h1 {
     margin-bottom: 0.5rem;
 }
 
-.photographer_section article p {
+/* .photographer_section article p {
     color: #901C1C;
     font-size: 13px;
+} */
+
+.location-color {
+    color: #901C1C;
+    font-size: 20px;
+}
+
+.description-color {
+    color: #111;
+}
+
+.pricing-color {
+    color: #525252;
 }
 
 .photographer_section article img {

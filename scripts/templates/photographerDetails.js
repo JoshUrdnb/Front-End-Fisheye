@@ -27,14 +27,17 @@ export default class PhotographerDetails {
         const nameHeading = document.createElement('h2')
         nameHeading.className = 'photograph-name'
         nameHeading.textContent = name
+        nameHeading.classList.add('style-name')
 
         const locationParagraph = document.createElement('p')
         locationParagraph.className = 'photograph-location'
         locationParagraph.textContent = `${city}, ${country}`
+        locationParagraph.classList.add('style-location')
 
         const taglineParagraph = document.createElement('p')
         taglineParagraph.className = 'photograph-tagline'
         taglineParagraph.textContent = tagline
+        taglineParagraph.classList.add('style-tagline')
 
         detailDiv.appendChild(nameHeading)
         detailDiv.appendChild(locationParagraph)

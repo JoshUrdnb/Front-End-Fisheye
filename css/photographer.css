@@ -15,6 +15,21 @@
     margin: 0 100px;
 }
 
+.style-name {
+    color: #D3573C;
+    font-size: 36px;
+    margin-bottom: 0.5rem;
+}
+
+.style-location {
+    color: #901C1C;
+    font-size: 20px;
+}
+
+.style-tagline {
+    color: #525252;
+}
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -105,12 +120,15 @@ form textarea {
 
 .photograph-details {
     margin-top: 3rem;
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 5px;
-    grid-row-gap: 5px;
+    grid-row-gap: 5px; */
     padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .media-container {

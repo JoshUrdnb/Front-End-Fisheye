@@ -43,20 +43,23 @@ export function photographerTemplate(data) {
 
         const location = document.createElement('p')
         location.textContent = `${city}, ${country}`
+        location.classList.add('location-color')
     
         const description = document.createElement('p')
         description.textContent = tagline
+        description.classList.add('description-color')
 
         const pricing = document.createElement('p')
-        pricing.textContent = `${formatToCurrency(price, 'EUR', 'fr-FR')}`
+        pricing.textContent = `${formatToCurrency(price, 'EUR', 'fr-FR')}/jour`
+        pricing.classList.add('pricing-color')
     
         // Ajouter les éléments à la div
         article.appendChild(profilePic)
         article.appendChild(naming)
         article.appendChild(articleWrapper) // Ajouter la nouvelle div à l'article
         // articleWrapper.appendChild(identification) // Pour afficher l'id du photographe
-        articleWrapper.appendChild(description)
         articleWrapper.appendChild(location)
+        articleWrapper.appendChild(description)
         articleWrapper.appendChild(pricing)
         link.appendChild(article)
     
