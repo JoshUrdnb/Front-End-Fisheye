@@ -132,7 +132,7 @@ export default class PhotographerDetails {
     renderTotalLikes() {
         const likesElement = document.getElementById('likes')
         const totalLikes = this.media.reduce((total, media) => total + media.likes, 0)
-        likesElement.textContent = `Total Likes: ${totalLikes}, Prix: ${this.price}`
+        likesElement.textContent = `${totalLikes} likes ${this.price}€/jour`
     }
 
     openModal() {

@@ -88,7 +88,7 @@ form div {
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 26px;
+    /* margin-bottom: 26px; */
 }
 
 form input {
@@ -103,6 +103,15 @@ form textarea {
     height: 136px;
     border: none;
     border-radius: 5px;
+}
+
+.submit-form-btn {
+    color: #FAFAFA;
+    font-weight: bold;
+    background-color: #901C1C;
+    border-radius: .3rem;
+    padding: 1rem;
+    width: 10rem;
 }
 
 .colorError {
@@ -148,18 +157,6 @@ form textarea {
     border-radius: .5rem;
 }
 
-#likes {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: aquamarine;
-    float: right;
-    border: solid 3px coral;
-    border-radius: 1rem;
-    height: 6rem;
-    width: 12rem;
-}
-
 .dropdown-menu {
     border-top: 3rem;
     background-color: #901C1C;
@@ -194,16 +191,14 @@ form textarea {
 .lightbox {
     display: flex;
     justify-content: space-between;
-    position: relative;
+    /* position: relative; */
 }
 
 .lightbox-button {
-    position: absolute;
-    /* top: 50%; */
-    /* transform: translateY(-50%); */
+    /* position: absolute; */
     background-color: transparent;
     border: none;
-    color: white;
+    color: #901C1C;
     font-size: 2rem;
     cursor: pointer;
 }
@@ -217,8 +212,20 @@ form textarea {
 }
 
 .close-modal-btn {
-    position: absolute;
-    color: white;
+    /* position: absolute; */
+    color: #901C1C;
     cursor: pointer;
     background-color: transparent;
+}
+
+#likes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D3573C;
+    font-weight: bold;
+    float: right;
+    border-radius: .5rem;
+    height: 6rem;
+    width: 12rem;
 }
