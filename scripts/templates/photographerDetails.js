@@ -238,13 +238,16 @@ export default class PhotographerDetails {
                 }
 
                 const titleParagraph = document.createElement('p')
-                titleParagraph.textContent = `Title: ${media.title}`
+                titleParagraph.textContent = `${media.title}`
     
-                const typeParagraph = document.createElement('p')
-                typeParagraph.textContent = `Type: ${media.video ? 'Video' : 'Image'}`
+                // const typeParagraph = document.createElement('p')
+                // typeParagraph.textContent = `Type: ${media.video ? 'Video' : 'Image'}`
     
                 const likesParagraph = document.createElement('p')
-                likesParagraph.textContent = `Likes: ${media.likes}`
+                likesParagraph.textContent = `${media.likes}`
+
+                const heartIcon = document.createElement('i')
+                heartIcon.classList.add('fas', 'fa-heart')
     
                 const likeButton = document.createElement('button')
                 likeButton.textContent = 'Like'
@@ -258,20 +261,21 @@ export default class PhotographerDetails {
                     }
                 });
     
-                const dateParagraph = document.createElement('p')
-                dateParagraph.textContent = `Date: ${media.date}`
+                // const dateParagraph = document.createElement('p')
+                // dateParagraph.textContent = `Date: ${media.date}`
     
-                const priceParagraph = document.createElement('p')
-                priceParagraph.textContent = `Price: ${media.price}`
+                // const priceParagraph = document.createElement('p')
+                // priceParagraph.textContent = `Price: ${media.price}`
 
                 mediaLink.appendChild(renderedMedia)
                 mediaItemDiv.appendChild(mediaLink)
                 mediaItemDiv.appendChild(renderedMedia)
                 mediaItemDiv.appendChild(titleParagraph)
-                mediaItemDiv.appendChild(typeParagraph)
+                // mediaItemDiv.appendChild(typeParagraph)
                 mediaItemDiv.appendChild(likesParagraph)
-                mediaItemDiv.appendChild(dateParagraph)
-                mediaItemDiv.appendChild(priceParagraph)
+                likesParagraph.appendChild(heartIcon)
+                // mediaItemDiv.appendChild(dateParagraph)
+                // mediaItemDiv.appendChild(priceParagraph)
                 mediaItemDiv.appendChild(likeButton)
                 mediaContainerDiv.appendChild(mediaItemDiv)
             }
