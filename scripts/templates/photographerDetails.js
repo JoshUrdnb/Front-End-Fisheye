@@ -212,6 +212,9 @@ export default class PhotographerDetails {
     }
 
     renderMedia() {
+        // const mediaDivContainer = document.querySelector('div')
+        // mediaDivContainer.className = 'mediaDivContainer'
+
         const mediaContainerDiv = document.querySelector('.media-container')
         mediaContainerDiv.innerHTML = ''
 

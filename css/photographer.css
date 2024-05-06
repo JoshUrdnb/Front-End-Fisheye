@@ -134,6 +134,12 @@ form textarea {
     justify-content: space-between;
 }
 
+/* .mediaDivContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
 .media-container {
     margin-top: 3rem;
     display: grid;
