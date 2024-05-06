@@ -159,3 +159,66 @@ form textarea {
     height: 6rem;
     width: 12rem;
 }
+
+.dropdown-menu {
+    border-top: 3rem;
+    background-color: #901C1C;
+    height: 3rem;
+    width: 5rem;
+    border-radius: .3rem;
+    text-decoration: none;
+    color: #FFF;
+    font-weight: bold;
+}
+
+/* .dropdown-menu select {
+    background-color: #901C1C;
+    height: 3rem;
+    width: 5rem;
+    border-radius: .3rem;
+    text-decoration: none;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.dropdown-menu option {
+    background-color: #901C1C;
+    height: 3rem;
+    width: 5rem;
+    border-radius: .3rem;
+    text-decoration: none;
+    color: #FFF;
+    font-weight: bold;
+} */
+
+.lightbox {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.lightbox-button {
+    position: absolute;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.previous-button {
+    left: 1rem;
+}
+
+.next-button {
+    right: 1rem;
+}
+
+.close-modal-btn {
+    position: absolute;
+    color: white;
+    cursor: pointer;
+    background-color: transparent;
+}

@@ -20,8 +20,6 @@ class ImageFactory {
         mediaImg.alt = this.media.title
         mediaImg.title = this.media.title
         mediaImg.setAttribute('aria-label', `Image: ${this.media.title}`)
-        mediaImg.style.maxHeight = '300px'
-        mediaImg.style.maxWidth = '300px'
         mediaImg.classList.add(className)
         return mediaImg
     }

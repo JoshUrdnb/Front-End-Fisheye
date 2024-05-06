@@ -67,6 +67,7 @@ export default class PhotographerDetails {
         likesElement.textContent = `Likes: ${this.likedMedia.length}`
 
         const dropdownMenu = document.createElement('select')
+        dropdownMenu.className = 'dropdown-menu'
         dropdownMenu.addEventListener('change', (e) => {
             const selectedOption = e.target.value
             if (selectedOption === 'title') {
@@ -81,9 +82,9 @@ export default class PhotographerDetails {
         });
 
         const options = [
-            { label: 'Trier par :' },
+            // { label: 'Trier par :' },
             { value: 'title', label: 'Titre' },
-            { value: 'likes', label: 'Likes' },
+            { value: 'likes', label: 'Popularité' },
             { value: 'date', label: 'Date' }
         ]
 
@@ -91,6 +92,7 @@ export default class PhotographerDetails {
             const optionElement = document.createElement('option')
             optionElement.value = option.value
             optionElement.textContent = option.label
+            optionElement.className = 'dropdown-option'
             dropdownMenu.appendChild(optionElement)
         });
 
@@ -143,12 +145,14 @@ export default class PhotographerDetails {
             document.addEventListener('keydown', this.handleKeyDown)
 
             const previousButton = document.createElement('button')
-            previousButton.textContent = 'Previous'
+            // previousButton.textContent = 'Previous'
+            previousButton.classList.add('lightbox-button','fa-solid', 'fa-chevron-left')
             previousButton.addEventListener('click', () => this.previousImage())
             lightbox.appendChild(previousButton)
 
             const nextButton = document.createElement('button')
-            nextButton.textContent = 'Next'
+            // nextButton.textContent = 'Next'
+            nextButton.classList.add('lightbox-button','fa-solid', 'fa-chevron-right')
             nextButton.addEventListener('click', () => this.nextImage())
             lightbox.appendChild(nextButton)
         }
@@ -203,8 +207,6 @@ export default class PhotographerDetails {
             const mediaImg = document.createElement('img')
             mediaImg.src = `assets/media/${this.id}/${media.image}`
             mediaImg.alt = media.title
-            mediaImg.style.maxHeight = '300px'
-            mediaImg.style.maxWidth = '300px'
             modalContent.appendChild(mediaImg)
         }
     }
