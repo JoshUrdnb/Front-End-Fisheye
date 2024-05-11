@@ -63,9 +63,6 @@ export default class PhotographerDetails {
         detailsElement.innerHTML = ''
         detailsElement.appendChild(photographerSection)
 
-        const likesElement = document.getElementById('likes')
-        likesElement.textContent = `Likes: ${this.likedMedia.length}`
-
         const dropdownMenu = document.createElement('select')
         dropdownMenu.className = 'dropdown-menu'
         dropdownMenu.addEventListener('change', (e) => {
@@ -99,8 +96,12 @@ export default class PhotographerDetails {
         detailsElement.appendChild(dropdownMenu)
         dropdownMenu.setAttribute('aria-label', 'Trier par :')
 
+        const mediaDivContainer = document.createElement('div')
+        mediaDivContainer.className = 'mediaDivContainer'
+        detailsElement.appendChild(mediaDivContainer)
+
         const mediaContainerDiv = document.createElement('div')
-        detailsElement.appendChild(mediaContainerDiv)
+        mediaDivContainer.appendChild(mediaContainerDiv)
         mediaContainerDiv.className = 'media-container'
 
         this.renderMedia()
@@ -131,8 +132,20 @@ export default class PhotographerDetails {
 
     renderTotalLikes() {
         const likesElement = document.getElementById('likes')
+        likesElement.innerHTML = ''
         const totalLikes = this.media.reduce((total, media) => total + media.likes, 0)
-        likesElement.textContent = `${totalLikes} likes ${this.price}€/jour`
+
+        const liked = document.createElement('span')
+        liked.textContent = totalLikes
+        likesElement.appendChild(liked)
+
+        const liked3 = document.createElement('span')
+        liked3.classList.add('likedIcon', 'fas', 'fa-heart')
+        likesElement.appendChild(liked3)
+
+        const liked2 = document.createElement('span')
+        liked2.textContent = `${this.price}€/jour`
+        likesElement.appendChild(liked2)
     }
 
     openModal() {
@@ -212,8 +225,6 @@ export default class PhotographerDetails {
     }
 
     renderMedia() {
-        // const mediaDivContainer = document.querySelector('div')
-        // mediaDivContainer.className = 'mediaDivContainer'
 
         const mediaContainerDiv = document.querySelector('.media-container')
         mediaContainerDiv.innerHTML = ''
@@ -228,7 +239,6 @@ export default class PhotographerDetails {
                 const renderedMedia = mediaFactory.render('imgGallery')
 
                 const mediaLink = document.createElement('a')
-                // mediaLink.href = '#'
 
                 renderedMedia.addEventListener('click', (e)=> {
                     e.preventDefault()
@@ -245,7 +255,7 @@ export default class PhotographerDetails {
                 const titleParagraph = document.createElement('p')
                 titleParagraph.textContent = `${media.title}`
     
-                const likesParagraph = document.createElement('p')
+                const likesParagraph = document.createElement('span')
                 likesParagraph.textContent = `${media.likes}`
 
                 const heartIcon = document.createElement('i')
@@ -267,7 +277,7 @@ export default class PhotographerDetails {
                 mediaItemDiv.appendChild(renderedMedia)
                 mediaItemDiv.appendChild(titleParagraph)
                 mediaItemDiv.appendChild(likesParagraph)
-                likesParagraph.appendChild(heartIcon)
+                likeButton.appendChild(heartIcon)
                 mediaItemDiv.appendChild(likeButton)
                 mediaContainerDiv.appendChild(mediaItemDiv)
             }

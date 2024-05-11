@@ -89,6 +89,7 @@ form div {
     width: 100%;
     align-items: self-start;
     /* margin-bottom: 26px; */
+    margin-top: 26px;
 }
 
 form input {
@@ -134,11 +135,11 @@ form textarea {
     justify-content: space-between;
 }
 
-/* .mediaDivContainer {
+.mediaDivContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-} */
+}
 
 .media-container {
     margin-top: 3rem;
@@ -174,7 +175,7 @@ form textarea {
     font-weight: bold;
 }
 
-/* .dropdown-menu select {
+.dropdown-option {
     background-color: #901C1C;
     height: 3rem;
     width: 5rem;
@@ -184,20 +185,10 @@ form textarea {
     font-weight: bold;
 }
 
-.dropdown-menu option {
-    background-color: #901C1C;
-    height: 3rem;
-    width: 5rem;
-    border-radius: .3rem;
-    text-decoration: none;
-    color: #FFF;
-    font-weight: bold;
-} */
-
 .lightbox {
     display: flex;
     justify-content: space-between;
-    /* position: relative; */
+    position: relative;
 }
 
 .lightbox-button {
@@ -218,7 +209,7 @@ form textarea {
 }
 
 .close-modal-btn {
-    /* position: absolute; */
+    position: absolute;
     color: #901C1C;
     cursor: pointer;
     background-color: transparent;
@@ -230,8 +221,14 @@ form textarea {
     align-items: center;
     background-color: #D3573C;
     font-weight: bold;
-    float: right;
     border-radius: .5rem;
     height: 6rem;
     width: 12rem;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+}
+
+.likedIcon {
+    margin: 1rem;
 }
