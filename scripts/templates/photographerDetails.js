@@ -135,17 +135,19 @@ export default class PhotographerDetails {
         likesElement.innerHTML = ''
         const totalLikes = this.media.reduce((total, media) => total + media.likes, 0)
 
-        const liked = document.createElement('span')
-        liked.textContent = totalLikes
-        likesElement.appendChild(liked)
+        const likedElement = document.createElement('span')
+        likedElement.textContent = totalLikes
 
-        const liked3 = document.createElement('span')
-        liked3.classList.add('likedIcon', 'fas', 'fa-heart')
-        likesElement.appendChild(liked3)
+        const likedElement2 = document.createElement('span')
+        likedElement2.classList.add('likedIcon', 'fas', 'fa-heart')
 
-        const liked2 = document.createElement('span')
-        liked2.textContent = `${this.price}€/jour`
-        likesElement.appendChild(liked2)
+        likedElement.appendChild(likedElement2)
+
+        likesElement.appendChild(likedElement)
+
+        const likedElement3 = document.createElement('span')
+        likedElement3.textContent = `${this.price}€ / jour`
+        likesElement.appendChild(likedElement3)
     }
 
     openModal() {
