@@ -151,15 +151,15 @@ form textarea {
 }
 
 .media-item img {
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 500px;
     object-fit: cover;
     border-radius: .5rem;
 }
 
 .media-item video {
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 500px;
     object-fit: cover;
     border-radius: .5rem;
 }
@@ -217,7 +217,6 @@ form textarea {
 
 #likes {
     display: flex;
-    /* justify-content: center; */
     justify-content: space-between;
     align-items: center;
     background-color: #DB8876;

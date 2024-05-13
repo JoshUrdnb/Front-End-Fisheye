@@ -254,7 +254,7 @@ export default class PhotographerDetails {
                     closeModalBtn.addEventListener('click', () => this.closeModal())
                 }
 
-                const titleParagraph = document.createElement('p')
+                const titleParagraph = document.createElement('span')
                 titleParagraph.textContent = `${media.title}`
     
                 const likesParagraph = document.createElement('span')
