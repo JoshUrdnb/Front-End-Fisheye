@@ -227,10 +227,9 @@ export default class PhotographerDetails {
     }
 
     renderMedia() {
-
         const mediaContainerDiv = document.querySelector('.media-container')
         mediaContainerDiv.innerHTML = ''
-
+    
         this.media.forEach((media) => {
             const mediaItemDiv = document.createElement('div')
             mediaItemDiv.className = 'media-item'
@@ -239,50 +238,63 @@ export default class PhotographerDetails {
     
             if (mediaFactory) {
                 const renderedMedia = mediaFactory.render('imgGallery')
-
+    
                 const mediaLink = document.createElement('a')
-
+    
                 renderedMedia.addEventListener('click', (e)=> {
                     e.preventDefault()
                     this.openModal()
                     this.currentIndex = this.media.indexOf(media)
                     this.loadCurrentImage()
                 });
-
+    
                 const closeModalBtn = document.getElementById('closeModalBtn')
                 if (closeModalBtn) {
                     closeModalBtn.addEventListener('click', () => this.closeModal())
                 }
-
+    
+                const mediaInfoDiv = document.createElement('div')
+                mediaInfoDiv.classList.add('media-info')
+    
+                const infoContainerDiv = document.createElement('div')
+                infoContainerDiv.classList.add('info-container')
+    
                 const titleParagraph = document.createElement('span')
                 titleParagraph.textContent = `${media.title}`
     
+                const heartButton = document.createElement('div')
+                heartButton.classList.add('heartDiv')
+
                 const likesParagraph = document.createElement('span')
                 likesParagraph.textContent = `${media.likes}`
-
+    
                 const heartIcon = document.createElement('i')
                 heartIcon.classList.add('fas', 'fa-heart')
     
-                const likeButton = document.createElement('button')
-                likeButton.addEventListener('click', () => {
+                heartIcon.addEventListener('click', () => {
                     if (!this.likedMedia.includes(media)) {
                         media.likes++
                         likesParagraph.textContent = `${media.likes}`
                         this.likedMedia.push(media)
-                        likeButton.disabled = true
+                        // heartIcon.disabled = true
                         this.renderTotalLikes()
                     }
                 });
+    
+                infoContainerDiv.appendChild(titleParagraph)
+                infoContainerDiv.appendChild(heartButton)
+                heartButton.appendChild(likesParagraph)
+                heartButton.appendChild(heartIcon)
 
                 mediaLink.appendChild(renderedMedia)
+                mediaInfoDiv.appendChild(infoContainerDiv)
+    
                 mediaItemDiv.appendChild(mediaLink)
                 mediaItemDiv.appendChild(renderedMedia)
-                mediaItemDiv.appendChild(titleParagraph)
-                mediaItemDiv.appendChild(likesParagraph)
-                likeButton.appendChild(heartIcon)
-                mediaItemDiv.appendChild(likeButton)
+                mediaItemDiv.appendChild(mediaInfoDiv);
                 mediaContainerDiv.appendChild(mediaItemDiv)
             }
         });
     }
+    
 }

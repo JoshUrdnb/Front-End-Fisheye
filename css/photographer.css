@@ -143,6 +143,7 @@ form textarea {
 
 .media-container {
     margin-top: 3rem;
+    margin-bottom: 3rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
@@ -230,4 +231,17 @@ form textarea {
 
 .likedIcon {
     margin: 1rem;
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #901C1C;
+    font-size: larger;
+    padding: .3rem;
+}
+
+.heartDiv {
+    cursor: pointer;
 }
