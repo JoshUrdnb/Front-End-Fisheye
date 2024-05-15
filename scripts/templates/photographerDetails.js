@@ -17,52 +17,53 @@ export default class PhotographerDetails {
 
     async render() {
         const { name, city, country, tagline, portrait } = this
-
+    
         const photographerSection = document.createElement('section')
         photographerSection.className = 'photograph-details'
-
+    
         const detailDiv = document.createElement('div')
         detailDiv.className = 'photograph-detail'
-
+    
         const nameHeading = document.createElement('h2')
         nameHeading.className = 'photograph-name'
         nameHeading.textContent = name
         nameHeading.classList.add('style-name')
-
+    
         const locationParagraph = document.createElement('p')
         locationParagraph.className = 'photograph-location'
         locationParagraph.textContent = `${city}, ${country}`
         locationParagraph.classList.add('style-location')
-
+    
         const taglineParagraph = document.createElement('p')
         taglineParagraph.className = 'photograph-tagline'
         taglineParagraph.textContent = tagline
         taglineParagraph.classList.add('style-tagline')
-
+    
         detailDiv.appendChild(nameHeading)
         detailDiv.appendChild(locationParagraph)
         detailDiv.appendChild(taglineParagraph)
-
+    
         const contactButton = document.createElement('button')
         contactButton.className = 'contact_button'
         contactButton.id = 'contactBtn'
         contactButton.setAttribute('aria-label', 'ouverture de la modal de contact')
         contactButton.onclick = () => displayModal(name)
         contactButton.textContent = 'Contactez-moi'
-
+    
         const imgElement = document.createElement('img')
         imgElement.className = 'photograph-img'
         imgElement.src = `assets/photographers/${portrait}`
         imgElement.alt = `Photo de ${name}`
-
+    
         photographerSection.appendChild(detailDiv)
         photographerSection.appendChild(contactButton)
         photographerSection.appendChild(imgElement)
-
+    
         const detailsElement = document.getElementById('details')
         detailsElement.innerHTML = ''
         detailsElement.appendChild(photographerSection)
-
+    
+        // Création du menu de sélection
         const dropdownMenu = document.createElement('select')
         dropdownMenu.className = 'dropdown-menu'
         dropdownMenu.addEventListener('change', (e) => {
@@ -76,38 +77,54 @@ export default class PhotographerDetails {
             }
             this.renderMedia(this.media, this.id)
             this.renderTotalLikes()
-        });
-
+        })
+    
+        // Options du menu de sélection
         const options = [
-            // { label: 'Trier par :' },
             { value: 'title', label: 'Titre' },
             { value: 'likes', label: 'Popularité' },
             { value: 'date', label: 'Date' }
         ]
-
+    
+        // Création et ajout des options au menu de sélection
         options.forEach(option => {
             const optionElement = document.createElement('option')
             optionElement.value = option.value
             optionElement.textContent = option.label
             optionElement.className = 'dropdown-option'
             dropdownMenu.appendChild(optionElement)
-        });
-
-        detailsElement.appendChild(dropdownMenu)
-        dropdownMenu.setAttribute('aria-label', 'Trier par :')
-
+        })
+    
+        // Création du conteneur pour le label et le menu de sélection
+        const sortContainer = document.createElement('div')
+        sortContainer.className = 'sort-container'
+    
+        // Création du label
+        const sortLabel = document.createElement('label')
+        sortLabel.textContent = 'Trier par : '
+        sortLabel.setAttribute('for', 'sortSelect') // S'assurer que la valeur de l'attribut 'for' correspond à l'ID du menu de sélection
+    
+        // Ajout du label au conteneur
+        sortContainer.appendChild(sortLabel)
+    
+        // Ajout du menu de sélection au conteneur
+        sortContainer.appendChild(dropdownMenu)
+    
+        // Ajout du conteneur à l'élément "details"
+        detailsElement.appendChild(sortContainer)
+    
         const mediaDivContainer = document.createElement('div')
         mediaDivContainer.className = 'mediaDivContainer'
         detailsElement.appendChild(mediaDivContainer)
-
+    
         const mediaContainerDiv = document.createElement('div')
         mediaDivContainer.appendChild(mediaContainerDiv)
         mediaContainerDiv.className = 'media-container'
-
+    
         this.renderMedia()
         this.renderTotalLikes()
     }
-
+    
     sortMediaByTitle() {
         this.media.sort((a, b) => {
             const titleA = a.title.toLowerCase()
@@ -115,56 +132,56 @@ export default class PhotographerDetails {
             if (titleA < titleB) return -1
             if (titleA > titleB) return 1
             return 0
-        });
+        })
     }
-
+    
     sortMediaByLikes() {
         this.media.sort((a, b) => {
             return b.likes - a.likes
-        });
+        })
     }
-
+    
     sortMediaByDate() {
         this.media.sort((a, b) => {
             return new Date(b.date) - new Date(a.date)
-        });
+        })
     }
-
+    
     renderTotalLikes() {
         const likesElement = document.getElementById('likes')
         likesElement.innerHTML = ''
         const totalLikes = this.media.reduce((total, media) => total + media.likes, 0)
-
+    
         const likedElement = document.createElement('span')
         likedElement.textContent = totalLikes
-
+    
         const likedElement2 = document.createElement('span')
         likedElement2.classList.add('likedIcon', 'fas', 'fa-heart')
-
+    
         likedElement.appendChild(likedElement2)
-
+    
         likesElement.appendChild(likedElement)
-
+    
         const likedElement3 = document.createElement('span')
         likedElement3.textContent = `${this.price}€ / jour`
         likesElement.appendChild(likedElement3)
     }
-
+    
     openModal() {
         const lightbox = document.getElementById('lightbox')
         if (lightbox) {
             lightbox.style.display = 'flex'
             lightbox.style.justifyContent = 'center'
             lightbox.style.alignItems = 'center'
-
+    
             document.addEventListener('keydown', this.handleKeyDown)
-
+    
             const previousButton = document.createElement('button')
             // previousButton.textContent = 'Previous'
             previousButton.classList.add('lightbox-button','fa-solid', 'fa-chevron-left')
             previousButton.addEventListener('click', () => this.previousImage())
             lightbox.appendChild(previousButton)
-
+    
             const nextButton = document.createElement('button')
             // nextButton.textContent = 'Next'
             nextButton.classList.add('lightbox-button','fa-solid', 'fa-chevron-right')
@@ -172,7 +189,7 @@ export default class PhotographerDetails {
             lightbox.appendChild(nextButton)
         }
     }
-
+    
     closeModal() {
         const lightbox = document.getElementById('lightbox')
         if (lightbox) {
@@ -180,7 +197,7 @@ export default class PhotographerDetails {
             document.removeEventListener('keydown', this.handleKeyDown)
         }
     }
-
+    
     handleKeyDown = (e) => {
         switch (e.key) {
             case 'ArrowLeft':
@@ -196,14 +213,14 @@ export default class PhotographerDetails {
                 break
         }
     }
-
+    
     previousImage() {
         if (this.currentIndex > 0) {
             this.currentIndex--
             this.loadCurrentImage()
         }
     }
-
+    
     nextImage() {
         if (this.currentIndex < this.media.length - 1) {
             this.currentIndex++
@@ -212,12 +229,12 @@ export default class PhotographerDetails {
         }
         this.loadCurrentImage()
     }
-
+    
     loadCurrentImage() {
         const media = this.media[this.currentIndex]
         const modalContent = document.getElementById('modalContent')
         modalContent.innerHTML = ''
-
+    
         if (media && media.image) {
             const mediaImg = document.createElement('img')
             mediaImg.src = `assets/media/${this.id}/${media.image}`
@@ -225,7 +242,7 @@ export default class PhotographerDetails {
             modalContent.appendChild(mediaImg)
         }
     }
-
+    
     renderMedia() {
         const mediaContainerDiv = document.querySelector('.media-container')
         mediaContainerDiv.innerHTML = ''
