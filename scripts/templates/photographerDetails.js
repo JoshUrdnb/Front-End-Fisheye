@@ -170,23 +170,20 @@ export default class PhotographerDetails {
     openModal() {
         const lightbox = document.getElementById('lightbox')
         if (lightbox) {
-            lightbox.style.display = 'flex'
-            lightbox.style.justifyContent = 'center'
-            lightbox.style.alignItems = 'center'
     
             document.addEventListener('keydown', this.handleKeyDown)
     
             const previousButton = document.createElement('button')
-            // previousButton.textContent = 'Previous'
             previousButton.classList.add('lightbox-button','fa-solid', 'fa-chevron-left')
             previousButton.addEventListener('click', () => this.previousImage())
             lightbox.appendChild(previousButton)
     
             const nextButton = document.createElement('button')
-            // nextButton.textContent = 'Next'
             nextButton.classList.add('lightbox-button','fa-solid', 'fa-chevron-right')
             nextButton.addEventListener('click', () => this.nextImage())
             lightbox.appendChild(nextButton)
+
+            this.loadCurrentImage()
         }
     }
     
@@ -235,11 +232,10 @@ export default class PhotographerDetails {
         const modalContent = document.getElementById('modalContent')
         modalContent.innerHTML = ''
     
-        if (media && media.image) {
-            const mediaImg = document.createElement('img')
-            mediaImg.src = `assets/media/${this.id}/${media.image}`
-            mediaImg.alt = media.title
-            modalContent.appendChild(mediaImg)
+        if (media) {
+            const mediaFactory = new MediaFactory(media, this.id)
+            const renderedMedia = mediaFactory.render('lightbox-media')
+            modalContent.appendChild(renderedMedia)
         }
     }
     
