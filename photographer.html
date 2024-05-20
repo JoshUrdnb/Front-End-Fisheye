@@ -11,14 +11,31 @@
 </head>
 
 <body>
+
   <header>
-    <a href="index.html" title="Lien page d'accueil"><img src="assets/images/logo.png" class="logo" alt="Logo de l'entreprise"/></a>
+    <a href="index.html" title="Lien page d'accueil"><img src="assets/images/logo.png" class="logo" alt="Logo de l'entreprise" /></a>
   </header>
+
   <main id="main">
+
     <div class="photograph-header">
       <div id="details"></div>
     </div>
+
+    <div class="btn-container">
+      <p>Trier par :</p>
+      <div id="dropdown">
+        <button class="dropbtn">Selection</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#" onclick="sortMedia('title')">Titre</a>
+          <a href="#" onclick="sortMedia('likes')">Popularité</a>
+          <a href="#" onclick="sortMedia('date')">Date</a>
+        </div>
+      </div>
+    </div>
+
     <div id="likes"></div>
+
   </main>
 
   <div id="lightbox" class="lightbox">
@@ -27,16 +44,16 @@
   </div>
 
   <div id="contact_modal">
-
     <div class="modal_disposition">
-
       <div class="modal">
+
         <header>
-            <h2>Contactez-moi<div id="contactFormName"></div></h2>
+          <h2>Contactez-moi<div id="contactFormName"></div></h2>
           <img id="modal_img" src="assets/icons/close.svg" />
         </header>
 
         <form id="contact_button">
+    
           <div class="formData">
             <label>Prénom</label><br>
             <input class="text-control" type="text" id="first" name="first" /><br>
@@ -62,6 +79,7 @@
           </div>
 
           <button class="submit-form-btn" type="submit">Envoyer</button>
+
         </form>
 
       </div>
@@ -69,6 +87,7 @@
   </div>
 
   <script type="module" src="scripts/pages/photographer.js"></script>
+
 </body>
 
 </html>
