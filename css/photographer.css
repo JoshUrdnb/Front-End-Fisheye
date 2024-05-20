@@ -176,12 +176,6 @@ form textarea {
     font-weight: bold;
 }
 
-.dropdown-menu .dropdown-option {
-    background-color: #901C1C;
-    text-decoration: none;
-    color: #FFF;
-}
-
 .sort-container {
     color: #333;
     padding: 8px 12px;
