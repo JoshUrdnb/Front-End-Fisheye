@@ -50,6 +50,11 @@ export default class PhotographerDetails {
         contactButton.onclick = () => displayModal(name)
         contactButton.textContent = 'Contactez-moi'
 
+        const dropdownButton = document.querySelector('.dropbtn')
+        dropdownButton.addEventListener('click', () => {
+            document.getElementById('myDropdown').classList.toggle('show')
+        })
+        
         const imgElement = document.createElement('img')
         imgElement.className = 'photograph-img'
         imgElement.src = `assets/photographers/${portrait}`
@@ -63,58 +68,6 @@ export default class PhotographerDetails {
         detailsElement.innerHTML = ''
         detailsElement.appendChild(photographerSection)
 
-        // this.initDropdown()
-
-        // Création du menu de sélection
-        const dropdownMenu = document.createElement('select')
-        dropdownMenu.className = 'dropdown-menu'
-        dropdownMenu.addEventListener('change', (e) => {
-            const selectedOption = e.target.value
-                if (selectedOption === 'title') {
-                    this.sortMediaByTitle()
-                } else if (selectedOption === 'likes') {
-                    this.sortMediaByLikes()
-                } else if (selectedOption === 'date') {
-                    this.sortMediaByDate()
-                }
-                    this.renderMedia(this.media, this.id)
-                    this.renderTotalLikes()
-            })
-            
-            // Options du menu de sélection
-            const options = [
-                { value: 'title', label: 'Titre' },
-                { value: 'likes', label: 'Popularité' },
-                { value: 'date', label: 'Date' }
-            ]
-            
-        // Création et ajout des options au menu de sélection
-        options.forEach(option => {
-            const optionElement = document.createElement('option')
-            optionElement.value = option.value
-            optionElement.textContent = option.label
-            optionElement.className = 'dropdown-option'
-            dropdownMenu.appendChild(optionElement)
-        })
-            
-        // Création du conteneur pour le label et le menu de sélection
-        const sortContainer = document.createElement('div')
-        sortContainer.className = 'sort-container'
-            
-        // Création du label
-        const sortLabel = document.createElement('label')
-        sortLabel.textContent = 'Trier par : '
-        sortLabel.setAttribute('for', 'sortSelect') // S'assurer que la valeur de l'attribut 'for' correspond à l'ID du menu de sélection
-            
-        // Ajout du label au conteneur
-        sortContainer.appendChild(sortLabel)
-            
-        // Ajout du menu de sélection au conteneur
-        sortContainer.appendChild(dropdownMenu)
-            
-        // Ajout du conteneur à l'élément "details"
-        detailsElement.appendChild(sortContainer)
-
         const mediaDivContainer = document.createElement('div')
         mediaDivContainer.className = 'mediaDivContainer'
         detailsElement.appendChild(mediaDivContainer)
@@ -125,32 +78,44 @@ export default class PhotographerDetails {
 
         this.renderMedia()
         this.renderTotalLikes()
+        this.sortMediaButton()
+        this.setDefaultSortButtonText()
     }
 
-    // initDropdown() {
-    //     const dropdownButton = document.querySelector('.dropbtn')
-    //     dropdownButton.addEventListener('click', () => {
-    //         document.getElementById('myDropdown').classList.toggle('show')
-    //     })
+    sortMediaButton() {
+        const dropdownLinks = document.querySelectorAll('.dropdown-content a')
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault()
+                const sortType = link.getAttribute('data-sort')
+                dropdownLinks.forEach(link => link.classList.remove('active'))
+                link.classList.add('active')
+                if (sortType === 'title') {
+                    this.sortMediaByTitle()
+                } else if (sortType === 'likes') {
+                    this.sortMediaByLikes()
+                } else if (sortType === 'date') {
+                    this.sortMediaByDate()
+                }
+                this.renderMedia()
+                this.renderTotalLikes()
+                this.updateSortButtonText()
+                document.getElementById('myDropdown').classList.remove('show')
+            });
+        });
+    }
 
-    //     const dropdownOptions = document.querySelectorAll('.dropdown-content a')
-    //     dropdownOptions.forEach(option => {
-    //         option.addEventListener('click', (e) => {
-    //             e.preventDefault()
-    //             const selectedOption = e.target.getAttribute('href').substring(1) // Utilise l'attribut href sans le #
-    //             if (selectedOption === 'title') {
-    //                 this.sortMediaByTitle()
-    //             } else if (selectedOption === 'likes') {
-    //                 this.sortMediaByLikes()
-    //             } else if (selectedOption === 'date') {
-    //                 this.sortMediaByDate()
-    //             }
-    //             this.renderMedia()
-    //             this.renderTotalLikes()
-    //             document.getElementById('myDropdown').classList.remove('show')
-    //         })
-    //     })
-    // }
+    setDefaultSortButtonText() {
+        const defaultSortLink = document.querySelector('.dropdown-content a:first-child')
+        const dropdownButton = document.querySelector('.dropbtn')
+        dropdownButton.textContent = defaultSortLink.textContent
+    }
+    
+    updateSortButtonText() {
+        const activeLink = document.querySelector('.dropdown-content a.active')
+        const dropdownButton = document.querySelector('.dropbtn')
+        dropdownButton.textContent = activeLink.textContent
+    }
 
     sortMediaByTitle() {
         this.media.sort((a, b) => {

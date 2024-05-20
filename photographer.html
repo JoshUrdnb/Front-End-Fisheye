@@ -25,14 +25,15 @@
     <div class="btn-container">
       <p>Trier par :</p>
       <div id="dropdown">
-        <button class="dropbtn">Selection</button>
-        <div id="myDropdown" class="dropdown-content">
-          <a href="#" onclick="sortMedia('title')">Titre</a>
-          <a href="#" onclick="sortMedia('likes')">Popularité</a>
-          <a href="#" onclick="sortMedia('date')">Date</a>
-        </div>
+          <button class="dropbtn"></button>
+          <div id="myDropdown" class="dropdown-content">
+              <a href="#" data-sort="likes">Popularité</a>
+              <a href="#" data-sort="date">Date</a>
+              <a href="#" data-sort="title">Titre</a>
+          </div>
       </div>
-    </div>
+  </div>
+  
 
     <div id="likes"></div>
 
