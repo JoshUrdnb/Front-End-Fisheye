@@ -142,7 +142,7 @@ form textarea {
 }
 
 .media-container {
-    margin-top: 3rem;
+    margin-top: 5rem;
     margin-bottom: 3rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -273,8 +273,12 @@ form textarea {
 } */
 
 .btn-container {
+    margin-top: 1rem;
+    margin-left: 7rem;
     display: flex;
     gap: 1rem;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 #dropdown {
