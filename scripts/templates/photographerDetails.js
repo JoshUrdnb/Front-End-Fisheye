@@ -163,6 +163,7 @@ export default class PhotographerDetails {
         const lightbox = document.getElementById('lightbox')
         if (lightbox) {
             document.addEventListener('keydown', this.handleKeyDown)
+            lightbox.style.display = 'block'
 
             const previousButton = document.createElement('button')
             previousButton.classList.add('lightbox-button', 'fa-solid', 'fa-chevron-left')
@@ -183,6 +184,7 @@ export default class PhotographerDetails {
         if (lightbox) {
             lightbox.style.display = 'none'
             document.removeEventListener('keydown', this.handleKeyDown)
+            lightbox.querySelectorAll('.lightbox-button').forEach(button => button.remove())
         }
     }
 
