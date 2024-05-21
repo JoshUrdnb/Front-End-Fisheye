@@ -151,6 +151,10 @@ form textarea {
     grid-row-gap: 5rem;
 }
 
+.media-item a:focus {
+    border: 2px solid blue;
+}
+
 .media-item img {
     height: 500px;
     width: 500px;
@@ -158,65 +162,14 @@ form textarea {
     border-radius: .5rem;
 }
 
+/* LIKES */
+
 .media-item video {
     height: 500px;
     width: 500px;
     object-fit: cover;
     border-radius: .5rem;
 }
-
-/* .lightbox-button {
-    background-color: transparent;
-    border: none;
-    color: #901C1C;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-.previous-button {
-    left: 1rem;
-}
-
-.next-button {
-    right: 1rem;
-} */
-
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
-}
-
-.modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.lightbox-image {
-    max-width: 100%;
-    max-height: 80vh;
-}
-
-.close-modal-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}  
 
 #likes {
     display: flex;
@@ -255,22 +208,6 @@ form textarea {
 }
 
 /* DROPDOWN */
-
-/* .dropdown-menu {
-    border-top: 3rem;
-    background-color: #901C1C;
-    height: 3rem;
-    width: 5rem;
-    border-radius: .3rem;
-    text-decoration: none;
-    color: #FFF;
-    font-weight: bold;
-}
-
-.sort-container {
-    color: #333;
-    padding: 8px 12px;
-} */
 
 .btn-container {
     margin-top: 1rem;
@@ -318,4 +255,56 @@ form textarea {
 
 .show {
     display: block;
+}
+
+/* LIGHTBOX */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 9999;
+}
+
+#lightbox-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 80vh;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.lightbox-button {
+    background-color: transparent;
+    border: none;
+    color: #901C1C;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.left-lightbox-button {
+    position:absolute;
+    left: -8px;
 }

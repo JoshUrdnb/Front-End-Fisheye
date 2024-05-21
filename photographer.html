@@ -6,14 +6,17 @@
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Fisheye - photographe </title>
 </head>
 
 <body>
 
   <header>
-    <a href="index.html" title="Lien page d'accueil"><img src="assets/images/logo.png" class="logo" alt="Logo de l'entreprise" /></a>
+    <a href="index.html" title="Lien page d'accueil"><img src="assets/images/logo.png" class="logo"
+        alt="Logo de l'entreprise" /></a>
   </header>
 
   <main id="main">
@@ -25,23 +28,25 @@
     <div class="btn-container">
       <p>Trier par :</p>
       <div id="dropdown">
-          <button class="dropbtn"></button>
-          <div id="myDropdown" class="dropdown-content">
-              <a href="#" data-sort="likes">Popularité</a>
-              <a href="#" data-sort="date">Date</a>
-              <a href="#" data-sort="title">Titre</a>
-          </div>
+        <button class="dropbtn"></button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#" data-sort="likes">Popularité</a>
+          <a href="#" data-sort="date">Date</a>
+          <a href="#" data-sort="title">Titre</a>
+        </div>
       </div>
-  </div>
-  
+    </div>
 
     <div id="likes"></div>
 
   </main>
 
   <div id="lightbox" class="lightbox">
-    <div id="modalContent" class="modal-content"></div>
-    <button id="closeModalBtn" class="close-modal-btn" aria-label="Fermer la modal"><i class="fa-solid fa-x"></i></button>
+    <div id="lightbox-container">
+      <button id="closeModalBtn" class="close-modal-btn" aria-label="Fermer la modal"><i
+        class="fa-solid fa-x"></i></button>
+      <div id="modalContent" class="modal-content"></div>
+    </div>
   </div>
 
   <div id="contact_modal">
@@ -49,12 +54,13 @@
       <div class="modal">
 
         <header>
-          <h2>Contactez-moi<div id="contactFormName"></div></h2>
+          <h2>Contactez-moi<div id="contactFormName"></div>
+          </h2>
           <img id="modal_img" src="assets/icons/close.svg" />
         </header>
 
         <form id="contact_button">
-    
+
           <div class="formData">
             <label>Prénom</label><br>
             <input class="text-control" type="text" id="first" name="first" /><br>

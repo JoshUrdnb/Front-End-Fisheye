@@ -161,19 +161,20 @@ export default class PhotographerDetails {
 
     openModal() {
         const lightbox = document.getElementById('lightbox')
+        const lightboxContainer = document.getElementById('lightbox-container')
         if (lightbox) {
             document.addEventListener('keydown', this.handleKeyDown)
             lightbox.style.display = 'block'
 
             const previousButton = document.createElement('button')
-            previousButton.classList.add('lightbox-button', 'fa-solid', 'fa-chevron-left')
+            previousButton.classList.add('lightbox-button', 'fa-solid', 'fa-chevron-left', 'left-lightbox-button')
             previousButton.addEventListener('click', () => this.previousImage())
-            lightbox.appendChild(previousButton)
+            lightboxContainer.appendChild(previousButton)
 
             const nextButton = document.createElement('button')
             nextButton.classList.add('lightbox-button', 'fa-solid', 'fa-chevron-right')
             nextButton.addEventListener('click', () => this.nextImage())
-            lightbox.appendChild(nextButton)
+            lightboxContainer.appendChild(nextButton)
 
             this.loadCurrentImage()
         }
@@ -245,7 +246,7 @@ export default class PhotographerDetails {
             if (mediaFactory) {
                 const renderedMedia = mediaFactory.render('imgGallery')
 
-                const mediaLink = document.createElement('a')
+                const mediaLink = document.createElement('div')
 
                 renderedMedia.addEventListener('click', (e) => {
                     e.preventDefault()

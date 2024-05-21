@@ -15,13 +15,15 @@ class ImageFactory {
     }
 
     render(className) {
+        const mediaLink = document.createElement('a')
         const mediaImg = document.createElement('img')
         mediaImg.src = `assets/media/${this.id}/${this.media.image}`
         mediaImg.alt = this.media.title
         mediaImg.title = this.media.title
         mediaImg.setAttribute('aria-label', `Image: ${this.media.title}`)
         mediaImg.classList.add(className)
-        return mediaImg
+        mediaLink.appendChild(mediaImg)
+        return mediaLink
     }
 }
 
@@ -32,6 +34,7 @@ class VideoFactory {
     }
 
     render(className) {
+        const mediaLink = document.createElement('a')
         const mediaVideo = document.createElement('video')
         mediaVideo.src = `assets/media/${this.id}/${this.media.video}`
         mediaVideo.alt = this.media.title
@@ -39,6 +42,8 @@ class VideoFactory {
         mediaVideo.setAttribute('aria-label', `Video: ${this.media.title}`)
         mediaVideo.controls = true
         mediaVideo.classList.add(className)
-        return mediaVideo
+        mediaLink.appendChild(mediaVideo)
+        return mediaLink
+
     }
 }
