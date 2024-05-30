@@ -151,8 +151,13 @@ form textarea {
     grid-row-gap: 5rem;
 }
 
-.media-item a:focus {
-    border: 2px solid blue;
+/* .media-item a:focus {
+    border: 2px solid green;
+} */
+
+.media-link {
+    border: none;
+    background-color: transparent;
 }
 
 .media-item img {
@@ -197,8 +202,15 @@ form textarea {
     padding: .3rem;
 }
 
-.heartDiv {
+/* .heartDiv {
     cursor: pointer;
+} */
+
+.heart-button {
+    border: none;
+    background-color: transparent;
+    color: #901C1C;
+    font-size: 1.3rem;
 }
 
 .sort-container {

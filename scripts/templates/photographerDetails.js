@@ -45,6 +45,7 @@ export default class PhotographerDetails {
 
         const contactButton = document.createElement('button')
         contactButton.className = 'contact_button'
+        contactButton.setAttribute('tabindex', 2)
         contactButton.id = 'contactBtn'
         contactButton.setAttribute('aria-label', 'ouverture de la modal de contact')
         contactButton.onclick = () => displayModal(name)
@@ -167,12 +168,12 @@ export default class PhotographerDetails {
             lightbox.style.display = 'block'
 
             const previousButton = document.createElement('button')
-            previousButton.classList.add('lightbox-button', 'fa-solid', 'fa-chevron-left', 'left-lightbox-button')
+            previousButton.classList.add('lightbox-button', 'remove-button', 'fa-solid', 'fa-chevron-left', 'left-lightbox-button')
             previousButton.addEventListener('click', () => this.previousImage())
             lightboxContainer.appendChild(previousButton)
 
             const nextButton = document.createElement('button')
-            nextButton.classList.add('lightbox-button', 'fa-solid', 'fa-chevron-right')
+            nextButton.classList.add('lightbox-button', 'remove-button', 'fa-solid', 'fa-chevron-right')
             nextButton.addEventListener('click', () => this.nextImage())
             lightboxContainer.appendChild(nextButton)
 
@@ -185,7 +186,7 @@ export default class PhotographerDetails {
         if (lightbox) {
             lightbox.style.display = 'none'
             document.removeEventListener('keydown', this.handleKeyDown)
-            lightbox.querySelectorAll('.lightbox-button').forEach(button => button.remove())
+            lightbox.querySelectorAll('.remove-button').forEach(button => button.remove())
         }
     }
 
@@ -244,16 +245,20 @@ export default class PhotographerDetails {
             const mediaFactory = new MediaFactory(media, this.id)
 
             if (mediaFactory) {
+
+                const mediaLink = document.createElement('button')
+                mediaLink.classList.add('media-link')
+
                 const renderedMedia = mediaFactory.render('imgGallery')
 
-                const mediaLink = document.createElement('div')
-
-                renderedMedia.addEventListener('click', (e) => {
+                mediaLink.addEventListener('click', (e) => {
                     e.preventDefault()
                     this.openModal()
                     this.currentIndex = this.media.indexOf(media)
                     this.loadCurrentImage()
                 })
+
+                mediaLink.appendChild(renderedMedia)
 
                 const closeModalBtn = document.getElementById('closeModalBtn')
                 if (closeModalBtn) {
@@ -269,16 +274,19 @@ export default class PhotographerDetails {
                 const titleParagraph = document.createElement('span')
                 titleParagraph.textContent = `${media.title}`
 
-                const heartButton = document.createElement('div')
-                heartButton.classList.add('heartDiv')
+                const heartDiv = document.createElement('div')
+                heartDiv.classList.add('heartDiv')
 
                 const likesParagraph = document.createElement('span')
                 likesParagraph.textContent = `${media.likes}`
 
+                const heartButton = document.createElement('button')
+                heartButton.classList.add('heart-button')
+
                 const heartIcon = document.createElement('i')
                 heartIcon.classList.add('fas', 'fa-heart')
 
-                heartIcon.addEventListener('click', () => {
+                heartButton.addEventListener('click', () => {
                     if (!this.likedMedia.includes(media)) {
                         media.likes++
                         likesParagraph.textContent = `${media.likes}`
@@ -288,22 +296,21 @@ export default class PhotographerDetails {
                     }
                 })
 
-                heartButton.appendChild(likesParagraph)
                 heartButton.appendChild(heartIcon)
+                heartDiv.appendChild(likesParagraph)
+                heartDiv.appendChild(heartButton)
 
                 infoContainerDiv.appendChild(titleParagraph)
-                infoContainerDiv.appendChild(heartButton)
+                infoContainerDiv.appendChild(heartDiv)
 
                 mediaInfoDiv.appendChild(infoContainerDiv)
 
-                mediaLink.appendChild(renderedMedia)
-                mediaLink.appendChild(mediaInfoDiv)
-
                 mediaItemDiv.appendChild(mediaLink)
+                mediaItemDiv.appendChild(mediaInfoDiv)
+
+                // mediaItemDiv.appendChild(mediaLink)
                 mediaContainerDiv.appendChild(mediaItemDiv)
             }
-
-            // mediaContainerDiv.appendChild(mediaItemDiv)
         })
     }
 }
