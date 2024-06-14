@@ -48,7 +48,7 @@ export default class PhotographerDetails {
         contactButton.setAttribute('tabindex', 2)
         contactButton.id = 'contactBtn'
         contactButton.setAttribute('aria-label', 'ouverture de la modal de contact')
-        contactButton.onclick = () => displayModal(name)
+        contactButton.addEventListener("click", () => displayModal(name))
         contactButton.textContent = 'Contactez-moi'
 
         const dropdownButton = document.querySelector('.dropbtn')
@@ -282,6 +282,7 @@ export default class PhotographerDetails {
 
                 const heartButton = document.createElement('button')
                 heartButton.classList.add('heart-button')
+                heartButton.setAttribute('aria-label', 'Ajouter un like')
 
                 const heartIcon = document.createElement('i')
                 heartIcon.classList.add('fas', 'fa-heart')

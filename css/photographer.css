@@ -211,6 +211,7 @@ form textarea {
     background-color: transparent;
     color: #901C1C;
     font-size: 1.3rem;
+    cursor: pointer;
 }
 
 .sort-container {
@@ -247,6 +248,10 @@ form textarea {
     min-width: 160px;
 }
 
+.dropbtn:hover {
+    border-radius: .5rem .5rem 0 0;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -262,7 +267,7 @@ form textarea {
     font-weight: bold;
     text-decoration: none;
     display: block;
-    border-bottom: 2px solid white;
+    border-top: 2px solid white;
 }
 
 .show {
